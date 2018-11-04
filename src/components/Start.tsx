@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import FancyText from './FancyText';
-import { FiYoutube, FiTwitter, FiFacebook } from 'react-icons/fi';
+import FancyButton from './FancyButton';
+import FancyInput from './FancyInput';
 
-const Start = ({ onClick }: { onClick: (val: any) => any }) => {
+const Start = ({ onClick }: { onClick: React.MouseEventHandler }) => {
+  const [target, setTarget] = useState('5 hours');
   return (
     <Container>
       <Title>Cheesy Timer 🚀</Title>
       <WelcomeText>Welcome back Ahmed! 🤗</WelcomeText>
-      <Text onClick={onClick}> 👉🏽 Start 👈🏽 </Text>
+      <FancyInput
+        value={`${target}`}
+        onChange={event => setTarget((event.target as any).value)}
+        placeholder="What's your focus target today?"
+      />
+      <FancyButton onClick={onClick}> 👉🏽 Start 👈🏽 </FancyButton>
     </Container>
   );
 };
@@ -33,15 +39,6 @@ const WelcomeText = styled.span`
   color: white;
   position: absolute;
   bottom: 30px;
-`;
-
-const Text = styled.h2`
-  font-weight: 400;
-  font-size: 30px;
-  align-self: center;
-  color: white;
-  margin-top: 100px;
-  cursor: pointer;
 `;
 
 export default Start;

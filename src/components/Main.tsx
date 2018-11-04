@@ -32,7 +32,12 @@ const Main = () => {
               fill: '#fff',
             },
             path: {
-              stroke: focusPercentage >= 100 ? '#2ac940' : '#fff',
+              stroke:
+                focusPercentage >= 100
+                  ? '#2ac940'
+                  : focusPercentage < 50
+                    ? '#ff3366'
+                    : '#f3ca3e',
             },
             trail: { stroke: '#aeaeae' },
           }}

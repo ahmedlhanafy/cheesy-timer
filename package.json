@@ -7,7 +7,7 @@
     "electron:watch": "tsc -w -p ./electron",
     "electron:lint": "tslint -c tslint.json -p tsconfig.json",
     "electron:start": "npm run electron:build && electron ./electron/dist/main.js",
-    "start": "react-scripts start",
+    "start": "rm tsconfig.json && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

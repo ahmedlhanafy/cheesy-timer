@@ -25,9 +25,9 @@ export const convertToMinutes = (obj: Object): Object => {
 export const alterDB = (db: object) => (name: string, active: boolean) => {
   if (db[name]) {
     if (active) {
-      db[name].focus = (db[name].focus || 0) + 60 * 60 * 1000;
+      db[name].focus = (db[name].focus || 0) + 5 * 60 * 1000;
     } else {
-      db[name].unfocus = (db[name].unfocus || 0) + 60 * 60 * 1000;
+      db[name].unfocus = (db[name].unfocus || 0) + 5 * 60 * 1000;
     }
   } else {
     db[name] = {
@@ -35,9 +35,9 @@ export const alterDB = (db: object) => (name: string, active: boolean) => {
       unfocus: 0,
     };
     if (active) {
-      db[name].focus = 60 * 60 * 1000;
+      db[name].focus = 5 * 60 * 1000;
     } else {
-      db[name].unfocus = 60 * 60 * 1000;
+      db[name].unfocus = 5 * 60 * 1000;
     }
   }
 };
@@ -87,3 +87,5 @@ export const keyboardKeydownEvents$ = Observable.create(obs => {
 
 // Register and start hook
 ioHook.start(false);
+
+process.on('exit', () => ioHook.unload());
