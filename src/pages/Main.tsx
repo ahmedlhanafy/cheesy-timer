@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import CircularProgressbar from 'react-circular-progressbar';
-import FancyText from './FancyText';
+import { FancyText } from '../components';
 import { useDatabase } from '../hooks';
 import { msToText, msToNumbers } from '../utils';
 

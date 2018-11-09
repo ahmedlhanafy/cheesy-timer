@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import FancyButton from './FancyButton';
-import FancyInput from './FancyInput';
+import { FancyButton, FancyInput } from '../components';
 
 const Start = ({ onClick }: { onClick: React.MouseEventHandler }) => {
   const [target, setTarget] = useState('5 hours');

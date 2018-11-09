@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { Message } from '../shared/channels';
+import { DatabaseStore } from '../shared/database';
 
 const { ipcRenderer } = (window as any).require('electron');
 
@@ -6,16 +8,15 @@ export default (): any => {
   const [database, setDatabase] = useState({});
 
   useEffect(() => {
-    const key = 'database';
-    const callback = (sender: any, value: any) => {
+    const callback = (_: any, value: DatabaseStore) => {
       setDatabase(value);
     };
-    ipcRenderer.on(key, callback);
+    ipcRenderer.on(Message.DATABASE, callback);
 
     return () => {
-      ipcRenderer.removeListener(key, callback);
+      ipcRenderer.removeListener(Message.DATABASE, callback);
     };
-  });
+  }, []);
 
   return database;
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import FancyText from './FancyText';
+import { FancyText } from '../components';
 import { FiYoutube, FiTwitter, FiFacebook } from 'react-icons/fi';
 
 const Stats = () => {

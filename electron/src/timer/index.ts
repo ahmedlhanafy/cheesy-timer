@@ -1,16 +1,14 @@
 import * as activeWin from 'active-win';
-import { merge, timer } from 'rxjs';
+import { merge } from 'rxjs';
 import { bufferTime, flatMap, tap, throttleTime } from 'rxjs/operators';
+import { mapToWindow } from './utils';
 import {
-  alterDB,
-  keyboardKeydownEvents$,
-  mapToWindow,
-  mouseClickEvents$,
   mouseMovementEvents$,
-  PERIOD_TIME,
-} from './utils';
-
-const database = {};
+  mouseClickEvents$,
+  keyboardKeydownEvents$,
+} from './osHooks';
+import { PERIOD_TIME } from './config';
+import db from './database';
 
 const interactivity$ = merge(
   mouseMovementEvents$,
@@ -30,24 +28,11 @@ const app = interactivity$.pipe(
       );
     });
   }),
-  tap(({ window, active }) => {
-    alterDB(database)(window.name, active);
-    alterDB(database)('all', active);
-
-    if (database['startTime'] === undefined) {
-      database['startTime'] = Date.now();
-    }
-  }),
+  tap(({ window, active }) => db.save(window, active)),
 );
 
-export const start = (sendDatabase: (Object) => void) => {
+export const start = () => {
   app.subscribe();
-
-  timer(0, PERIOD_TIME)
-    .pipe(
-      tap(() => {
-        sendDatabase(database);
-      }),
-    )
-    .subscribe();
 };
+
+export const database = db;

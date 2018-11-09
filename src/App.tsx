@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Main, Stats, Start } from './components';
+import { Main, Stats, Start } from './pages';
 import { startProgram } from './utils';
 
 const App = () => {
