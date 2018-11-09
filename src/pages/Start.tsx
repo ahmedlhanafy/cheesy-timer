@@ -1,19 +1,24 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { FancyButton, FancyInput } from '../components';
+import { FancyButton, FancyNumberInput } from '../components';
 
-const Start = ({ onClick }: { onClick: React.MouseEventHandler }) => {
-  const [target, setTarget] = useState('5 hours');
+type Props = {
+  target: number;
+  setTarget: (target: number) => void;
+  onStart: () => void;
+};
+
+const Start = ({ onStart, target, setTarget }: Props) => {
   return (
     <Container>
       <Title>Cheesy Timer 🚀</Title>
       <WelcomeText>Welcome back Ahmed! 🤗</WelcomeText>
-      <FancyInput
+      <FancyNumberInput
         value={`${target}`}
         onChange={event => setTarget((event.target as any).value)}
         placeholder="What's your focus target today?"
       />
-      <FancyButton onClick={onClick}> 👉🏽 Start 👈🏽 </FancyButton>
+      <FancyButton onClick={() => onStart()}> Start </FancyButton>
     </Container>
   );
 };

@@ -1,28 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import CircularProgressbar from 'react-circular-progressbar';
 import { FancyText } from '../components';
 import { useDatabase } from '../hooks';
 import { msToText, msToNumbers } from '../utils';
+import { TargetContext } from '../contexts';
 
 const Main = () => {
   const database = useDatabase();
+  const target = useContext(TargetContext);
 
-  if (database.all === undefined)
-    return (
-      <CounterContainer>
-        <Text>Collecting Data...🏃🏽‍</Text>
-      </CounterContainer>
-    );
+  const targetMills = target * 60 * 60 * 1000;
+  const workingHours = 8 * 60 * 60 * 1000;
 
-  const target = 5 * 60 * 60 * 1000;
-  const timeDifference = target - (Date.now() - database.startTime);
+  const timeDifference =
+    workingHours - (Date.now() - (database.startTime || Date.now()));
+    
   const [focusHours, focusMinutes] = msToNumbers(database.all.focus);
-  const focusPercentage = (database.all.focus / target) * 100;
+  const focusPercentage = (database.all.focus / targetMills) * 100;
 
   return (
     <CounterContainer>
-      <div style={{ width: 220, height: 220, marginBottom: 20 }}>
+      <div style={{ width: 250, height: 250, marginBottom: 12 }}>
         <CircularProgressbar
           styles={{
             background: {
@@ -32,19 +31,14 @@ const Main = () => {
               fill: '#fff',
             },
             path: {
-              stroke:
-                focusPercentage >= 100
-                  ? '#2ac940'
-                  : focusPercentage < 50
-                    ? '#ff3366'
-                    : '#f3ca3e',
+              stroke: strokeColor(focusPercentage),
             },
-            trail: { stroke: '#aeaeae' },
+            trail: { stroke: '#1a1a1a' },
           }}
           percentage={focusPercentage}
-          text={`${focusHours}:${focusMinutes} ${
-            focusPercentage >= 100 ? '👏🏽' : ''
-          }`}
+          text={`${focusHours}:${
+            focusMinutes < 10 ? `0${focusMinutes}` : focusMinutes
+          } ${focusPercentage >= 100 ? '👏🏽' : ''}`}
         />
       </div>
       <FancyText icon="👨🏽‍💻"> {msToText(database.all.focus)} </FancyText>
@@ -54,6 +48,13 @@ const Main = () => {
   );
 };
 
+const strokeColor = (focusPercentage: number): string =>
+  focusPercentage >= 100
+    ? '#2ac940'
+    : focusPercentage < 50
+      ? '#ff3366'
+      : '#f3ca3e';
+
 const CounterContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -61,13 +62,6 @@ const CounterContainer = styled.div`
   flex-direction: column;
   padding: 40px 0px;
   overflow: hidden;
-`;
-
-const Text = styled.h2`
-  font-weight: bold;
-  font-size: 28px;
-  align-self: center;
-  color: white;
 `;
 
 export default Main;

@@ -8,12 +8,6 @@ const FancyText = ({
   icon: string | React.ReactElement<any>;
   children: string | string[];
 }) => {
-  // const fancyChildren = children
-  //   .split('')
-  //   .map(
-  //     char => (!isNaN(parseInt(char, 10)) ? (fancyNumbers as any)[char] : char),
-  //   )
-  //   .join('');
   return (
     <MainText>
       <span style={{ fontSize: 40, marginRight: 6 }}>{icon}</span> 👉🏽 {children}
@@ -39,7 +33,7 @@ const MainText = styled.span`
   font-size: 22px;
   color: #fff;
   padding: 0px 36px;
-  align-self: flex-start;
+  align-self: center;
   display: flex;
   align-items: center;
 `;

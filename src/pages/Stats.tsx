@@ -2,17 +2,27 @@ import React from 'react';
 import styled from 'styled-components';
 import { FancyText } from '../components';
 import { FiYoutube, FiTwitter, FiFacebook } from 'react-icons/fi';
+import { useDatabase } from '../hooks';
+import { msToText } from '../utils';
 
 const Stats = () => {
+  const database = useDatabase();
+
   return (
     <Container>
       <Title>Stats 📈</Title>
-      <FancyText icon="💻"> 2 hours & 3 minutes </FancyText>
-      <FancyText icon="👨🏼‍🏫"> 2 hours & 3 minutes </FancyText>
-      <FancyText icon="☎️"> 5 hours & 0 minutes </FancyText>
+      <FancyText icon="💻"> {msToText(database.code.focus)} </FancyText>
+      <FancyText icon="👨🏼‍🏫"> {msToText(database.code_review.focus)} </FancyText>
+      <FancyText icon="☎️"> {msToText(database.meetings.focus)} </FancyText>
       <FancyText icon="✉️"> 2 hours </FancyText>
-      <FancyText icon={<FiYoutube />}> 2 hours </FancyText>
-      <FancyText icon={<FiTwitter />}> 2 hours </FancyText>
+      <FancyText icon={<FiYoutube />}>
+        {' '}
+        {msToText(database.youtube.focus)}{' '}
+      </FancyText>
+      <FancyText icon={<FiTwitter />}>
+        {' '}
+        {msToText(database.social.focus)}{' '}
+      </FancyText>
       <FancyText icon={<FiFacebook />}> 2 hours </FancyText>
     </Container>
   );

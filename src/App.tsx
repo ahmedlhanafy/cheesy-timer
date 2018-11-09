@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Main, Stats, Start } from './pages';
 import { startProgram } from './utils';
+import { TargetContext } from './contexts';
+import { usePersistentTarget } from './hooks';
 
 const App = () => {
+  const [target, setTarget] = usePersistentTarget();
   const [programStarted, setProgramStarted] = useState(false);
 
   const startApp = () => {
@@ -12,18 +15,20 @@ const App = () => {
   };
 
   return (
-    <Container>
-      <Overlay />
-      <Header />
-      {programStarted ? (
-        <>
-          <Main />
-          {/* <Stats /> */}
-        </>
-      ) : (
-        <Start onClick={startApp} />
-      )}
-    </Container>
+    <TargetContext.Provider value={target}>
+      <Container>
+        <Overlay />
+        <Header />
+        {programStarted ? (
+          <>
+            <Main />
+            <Stats />
+          </>
+        ) : (
+          <Start target={target} setTarget={setTarget} onStart={startApp} />
+        )}
+      </Container>
+    </TargetContext.Provider>
   );
 };
 
@@ -40,7 +45,6 @@ const Overlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #171926;
 `;
 
 const Header = styled.div`

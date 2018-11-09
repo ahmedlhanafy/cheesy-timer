@@ -6,11 +6,11 @@ let mainWindow: Electron.BrowserWindow;
 function createWindow() {
   mainWindow = new BrowserWindow({
     maxHeight: 520,
-    maxWidth: 400,
+    maxWidth: 370,
     minHeight: 520,
-    minWidth: 400,
+    minWidth: 370,
     height: 520,
-    width: 400,
+    width: 370,
     titleBarStyle: 'hiddenInset',
   });
 

@@ -9,21 +9,20 @@ const FancyButton = ({
 };
 
 const Button = styled.button`
-  width: auto;
   font-weight: 400;
-  font-size: 30px;
+  font-size: 24px;
   align-self: center;
   color: white;
   margin-top: 20px;
   background-color: #2ac940;
   border-radius: 36px;
   border: none;
-  padding: 4px 16px;
-  box-shadow: 0px 3px 45px -5px #2ac940;
+  padding: 4px 100px;
+  box-shadow: 0px 3px 45px -5px rgba(42, 201, 64, 0.5);
   transition: 500ms all;
   cursor: pointer;
   &:hover {
-    transform: scale(1.1); 
+    transform: scale(1.02);
   }
 `;
 
