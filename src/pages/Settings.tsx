@@ -4,16 +4,24 @@ import { Theme, darkTheme, lightTheme } from '../hooks/usePersistentTheme';
 
 const Settings = ({ setTheme }: { setTheme: (theme: Theme) => void }) => {
   return (
-    <Container>
-      <Title>Settings 🛠</Title>
-      <Body>
-        <Text>Change Theme</Text>
-        <ThemeCircleContainer>
-          <ThemeCircle onClick={() => setTheme(darkTheme)} color={darkTheme.backgroundColor} />
-          <ThemeCircle onClick={() => setTheme(lightTheme)} color={lightTheme.backgroundColor} />
-        </ThemeCircleContainer>
-      </Body>
-    </Container>
+    <div className="section">
+      <Container>
+        <Title>Settings 🛠</Title>
+        <Body>
+          <Text>Change Theme</Text>
+          <ThemeCircleContainer>
+            <ThemeCircle
+              onClick={() => setTheme(darkTheme)}
+              color={darkTheme.backgroundColor}
+            />
+            <ThemeCircle
+              onClick={() => setTheme(lightTheme)}
+              color={lightTheme.backgroundColor}
+            />
+          </ThemeCircleContainer>
+        </Body>
+      </Container>
+    </div>
   );
 };
 
@@ -22,10 +30,11 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const Title = styled.h3`
+const Title = styled.span`
   font-weight: bold;
   font-size: 28px;
   align-self: center;
+  margin: 28px 0px 8px 0px;
   color: ${props => props.theme.primaryTextColor};
 `;
 
@@ -49,7 +58,7 @@ const ThemeCircleContainer = styled.div`
 `;
 
 const ThemeCircle = styled.div`
-  margin-right: 8px;
+  margin-right: 16px;
   width: 50px;
   height: 50px;
   border-radius: 50%;

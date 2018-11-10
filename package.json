@@ -26,6 +26,7 @@
   "dependencies": {
     "active-win": "^4.0.0",
     "color": "^3.1.0",
+    "fullpage.js": "^3.0.3",
     "iohook": "^0.2.3",
     "lodash": "^4.17.11",
     "react": "^16.7.0-alpha.0",
@@ -37,6 +38,7 @@
   },
   "devDependencies": {
     "@types/color": "^3.0.0",
+    "@types/fullpage.js": "^2.9.0",
     "@types/lodash.isnumber": "^3.0.4",
     "@types/react": "^16.4.18",
     "@types/react-circular-progressbar": "^1.0.1",

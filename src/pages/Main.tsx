@@ -22,36 +22,38 @@ const Main = ({ theme }: { theme: Theme }) => {
   const focusPercentage = (database.all.focus / targetMills) * 100;
 
   return (
-    <CounterContainer>
-      <div style={{ width: 250, height: 250, marginBottom: 12 }}>
-        <CircularProgressbar
-          styles={{
-            background: {
-              fill: theme.primaryTextColor,
-            },
-            text: {
-              fill: theme.primaryTextColor,
-            },
-            path: {
-              stroke: strokeColor(focusPercentage),
-            },
-            trail: {
-              stroke: color(theme.backgroundColor)
-                .darken(0.2)
-                .rgb()
-                .toString(),
-            },
-          }}
-          percentage={focusPercentage}
-          text={`${focusHours}:${
-            focusMinutes < 10 ? `0${focusMinutes}` : focusMinutes
-          } ${focusPercentage >= 100 ? '👏🏽' : ''}`}
-        />
-      </div>
-      <FancyText emoji="👨🏽‍💻"> {msToText(database.all.focus)} </FancyText>
-      <FancyText emoji="😱"> {msToText(database.all.unfocus)} </FancyText>
-      <FancyText emoji="🏡"> {msToText(timeDifference)} </FancyText>
-    </CounterContainer>
+    <div className="section">
+      <CounterContainer>
+        <div style={{ width: 250, height: 250, marginBottom: 12 }}>
+          <CircularProgressbar
+            styles={{
+              background: {
+                fill: theme.primaryTextColor,
+              },
+              text: {
+                fill: theme.primaryTextColor,
+              },
+              path: {
+                stroke: strokeColor(focusPercentage),
+              },
+              trail: {
+                stroke: color(theme.backgroundColor)
+                  .darken(0.2)
+                  .rgb()
+                  .toString(),
+              },
+            }}
+            percentage={focusPercentage}
+            text={`${focusHours}:${
+              focusMinutes < 10 ? `0${focusMinutes}` : focusMinutes
+            } ${focusPercentage >= 100 ? '👏🏽' : ''}`}
+          />
+        </div>
+        <FancyText emoji="👨🏽‍💻"> {msToText(database.all.focus)} </FancyText>
+        <FancyText emoji="😱"> {msToText(database.all.unfocus)} </FancyText>
+        <FancyText emoji="🏡"> {msToText(timeDifference)} </FancyText>
+      </CounterContainer>
+    </div>
   );
 };
 

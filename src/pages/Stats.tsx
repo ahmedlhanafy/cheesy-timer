@@ -14,42 +14,47 @@ const Stats = () => {
   const database = useDatabase();
 
   return (
-    <Container>
-      <Title>Stats 📈</Title>
-      <FancyText icon={codingIcon}> {msToText(database.code.focus)} </FancyText>
-      <FancyText icon={codeReviewIcon}>
-        {' '}
-        {msToText(database.code_review.focus)}{' '}
-      </FancyText>
-      <FancyText icon={meetingsIcon}>
-        {' '}
-        {msToText(database.meetings.focus)}{' '}
-      </FancyText>
-      <FancyText icon={readingIcon}>
-        {' '}
-        {msToText(database.articles.focus)}{' '}
-      </FancyText>
-      <FancyText icon={socialIcon}>
-        {' '}
-        {msToText(database.social.focus)}{' '}
-      </FancyText>
-      <FancyText icon={youtubeIcon}>
-        {msToText(database.youtube.focus)}{' '}
-      </FancyText>
-    </Container>
+    <div className="section">
+      <Container>
+        <Title>Stats 📈</Title>
+        <FancyText icon={codingIcon}>
+          {' '}
+          {msToText(database.code.focus)}{' '}
+        </FancyText>
+        <FancyText icon={codeReviewIcon}>
+          {' '}
+          {msToText(database.code_review.focus)}{' '}
+        </FancyText>
+        <FancyText icon={meetingsIcon}>
+          {' '}
+          {msToText(database.meetings.focus)}{' '}
+        </FancyText>
+        <FancyText icon={readingIcon}>
+          {' '}
+          {msToText(database.articles.focus)}{' '}
+        </FancyText>
+        <FancyText icon={socialIcon}>
+          {' '}
+          {msToText(database.social.focus)}{' '}
+        </FancyText>
+        <FancyText icon={youtubeIcon}>
+          {msToText(database.youtube.focus)}{' '}
+        </FancyText>
+      </Container>
+    </div>
   );
 };
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 20px 0px 20px 0px;
 `;
 
-const Title = styled.h2`
+const Title = styled.span`
   font-weight: bold;
   font-size: 28px;
   align-self: center;
+  margin: 28px 0px 8px 0px;
   color: ${props => props.theme.primaryTextColor};
 `;
 
