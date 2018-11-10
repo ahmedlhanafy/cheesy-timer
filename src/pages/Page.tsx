@@ -17,6 +17,7 @@ const Page = ({ children, title }: Props) => {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100%;
 `;
 
 const Title = styled.span`
@@ -31,6 +32,7 @@ const Body = styled.div`
   display: flex;
   flex-direction: column;
   padding: 4px 16px;
+  flex: 1;
 `;
 
 export default Page;

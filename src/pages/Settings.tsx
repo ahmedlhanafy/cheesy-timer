@@ -17,6 +17,8 @@ const Settings = ({ setTheme }: { setTheme: (theme: Theme) => void }) => {
           color={lightTheme.backgroundColor}
         />
       </ThemeCircleContainer>
+      <Space />
+      <MadeWithLoveText>Made with ❤️ by Ahmed Elhanafy</MadeWithLoveText>
     </Page>
   );
 };
@@ -42,6 +44,19 @@ const ThemeCircle = styled.div`
   background-color: ${props => props.color};
   border: 1px solid #333333;
   cursor: pointer;
+`;
+
+const Space = styled.div`
+  flex: 1;
+`;
+
+const MadeWithLoveText = styled.span`
+  font-weight: 300;
+  font-size: 16px;
+  color: ${props => props.theme.primaryTextColor};
+  margin-bottom: 16px;
+  align-self: center;
+  text-align: center;
 `;
 
 export default Settings;
