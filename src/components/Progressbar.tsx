@@ -3,7 +3,7 @@ import styled, { withTheme } from 'styled-components';
 import color from 'color';
 import CircularProgressbar from 'react-circular-progressbar';
 import { Theme } from '../hooks/usePersistentTheme';
-import { msToNumbers } from '../utils';
+import { msToNumbers } from '../shared/utils';
 import { TargetContext } from '../contexts';
 import { DatabaseStore } from '../shared/database';
 

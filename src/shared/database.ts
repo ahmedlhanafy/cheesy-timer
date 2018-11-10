@@ -11,22 +11,22 @@ export enum Category {
 
 export type FocusType = {
   focus: number;
-  unfocus: number;
-  uncomminted?: number;
 };
 
-
 export type DatabaseStore = { [key in Category]: FocusType } & {
+  all: { focus: number; unFocus: number };
   startTime?: number;
+  uncommittedTime: number;
 };
 
 export const inititalDatabaseStore: DatabaseStore = {
-  all: { focus: 0, unfocus: 0, uncomminted: 0 },
-  articles: { focus: 0, unfocus: 0, uncomminted: 0 },
-  code_review: { focus: 0, unfocus: 0, uncomminted: 0 },
-  code: { focus: 0, unfocus: 0, uncomminted: 0 },
-  meetings: { focus: 0, unfocus: 0, uncomminted: 0 },
-  other: { focus: 0, unfocus: 0, uncomminted: 0 },
-  social: { focus: 0, unfocus: 0, uncomminted: 0 },
-  youtube: { focus: 0, unfocus: 0, uncomminted: 0 },
+  all: { focus: 0, unFocus: 0 },
+  articles: { focus: 0 },
+  code_review: { focus: 0 },
+  code: { focus: 0 },
+  meetings: { focus: 0 },
+  other: { focus: 0 },
+  social: { focus: 0 },
+  youtube: { focus: 0 },
+  uncommittedTime: 0,
 };

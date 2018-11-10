@@ -1,1 +1,1 @@
-export const PERIOD_TIME = 3000;
+export const PERIOD_TIME = 1000;

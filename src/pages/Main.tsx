@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FancyText, Progressbar } from '../components';
 import { useDatabase } from '../hooks';
-import { msToText } from '../utils';
+import { msToText } from '../shared/utils';
 import Page from './Page';
 
 const Main = () => {
@@ -19,7 +19,7 @@ const Main = () => {
         <Progressbar database={database} />
       </ProgressbarContainer>
       <FancyText emoji="👨🏽‍💻"> {msToText(database.all.focus)} </FancyText>
-      <FancyText emoji="😱"> {msToText(database.all.unfocus)} </FancyText>
+      <FancyText emoji="😱"> {msToText(database.all.unFocus)} </FancyText>
       <FancyText emoji={timeDifference > 0 ? '🏡' : undefined}>
         {timeDifference > 0
           ? msToText(timeDifference)

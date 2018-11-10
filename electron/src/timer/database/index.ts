@@ -9,6 +9,11 @@ import {
   inititalDatabaseStore,
 } from '../../../../src/shared/database';
 
+export enum Activity {
+  Active = 'active',
+  Uncommited = 'uncommitted',
+}
+
 class Database extends EventEmitter {
   private backingStore: DatabaseStore = inititalDatabaseStore;
   private static readonly CHANGE = 'change';
@@ -29,11 +34,31 @@ class Database extends EventEmitter {
     }
   }
 
-  public save(window: Window, active: boolean): Observable<void> {
-    const category = parser(window);
-    this.write(category, active);
+  public saveUncommittedTime() {
+    this.backingStore.all.focus =
+      this.backingStore.all.focus + this.backingStore.uncommittedTime;
+    this.backingStore.uncommittedTime = 0;
+  }
 
-    this.write(Category.All, category === Category.Meetings ? true : active);
+  public flushUncommittedTime() {
+    this.backingStore.all.unFocus =
+      this.backingStore.all.unFocus + this.backingStore.uncommittedTime;
+    this.backingStore.uncommittedTime = 0;
+  }
+
+  public read(): Observable<DatabaseStore> {
+    return of(this.backingStore);
+  }
+
+  public save(window: Window, activity: Activity): Observable<void> {
+    const category = parser(window);
+
+    this.write(category, activity);
+
+    this.write(
+      Category.All,
+      category === Category.Meetings ? Activity.Active : activity,
+    );
 
     this.emit(Database.CHANGE, this.backingStore);
 
@@ -42,7 +67,16 @@ class Database extends EventEmitter {
     return of();
   }
 
-  private write(category: Category, active: boolean): void {
+  private write(category: Category, activity: Activity): void {
+    // Distraction time
+    if (category === Category.All) {
+      this.backingStore.uncommittedTime =
+        activity === Activity.Uncommited
+          ? this.backingStore.uncommittedTime + this.incrementVal
+          : this.backingStore.uncommittedTime;
+    }
+
+    // Save the time regardless of the activity
     if (category === Category.Youtube || category === Category.Meetings) {
       this.backingStore[category].focus =
         this.backingStore[category].focus + this.incrementVal;
@@ -50,14 +84,10 @@ class Database extends EventEmitter {
     }
 
     // Focus time
-    this.backingStore[category].focus = active
-      ? this.backingStore[category].focus + this.incrementVal
-      : this.backingStore[category].focus;
-
-    // Distraction time
-    (this.backingStore[category] as FocusType).unfocus = !active
-      ? (this.backingStore[category] as FocusType).unfocus + this.incrementVal
-      : (this.backingStore[category] as FocusType).unfocus;
+    this.backingStore[category].focus =
+      activity === Activity.Active
+        ? this.backingStore[category].focus + this.incrementVal
+        : this.backingStore[category].focus;
   }
 }
 

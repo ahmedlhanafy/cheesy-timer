@@ -2,7 +2,7 @@ import React from 'react';
 import { FancyText } from '../components';
 import Page from './Page';
 import { useDatabase } from '../hooks';
-import { msToText } from '../utils';
+import { msToText } from '../shared/utils';
 import codingIcon from '../icons/flat-icons/coding.svg';
 import codeReviewIcon from '../icons/flat-icons/code_review.svg';
 import meetingsIcon from '../icons/flat-icons/meetings.svg';
