@@ -1,10 +1,10 @@
-import { Category } from '../../../../src/shared/database';
-import { normalizeText, Window } from '../utils';
+import { Category } from '../../../../../src/shared/database';
+import { normalizeText, Window } from '../../../utils';
 
 type Parser = (window: Window) => Category;
 
 const socialParser: Parser = window => {
-  const values = ['facebook', 'twitter', 'instagram'];
+  const values = ['facebook', 'twitter', 'instagram', 'messenger'];
   const windowTitle = normalizeText(window.title);
   const isSocial = values.reduce(
     (acc, val) => windowTitle.includes(val) || acc,
@@ -26,7 +26,7 @@ const codingParser: Parser = window => {
 };
 
 const codeReviewParser: Parser = window => {
-  const values = ['pullrequest'];
+  const values = ['pullrequest', 'mergerequest'];
   const windowTitle = normalizeText(window.title);
   const isCodeReview = values.reduce(
     (acc, val) => windowTitle.includes(val) || acc,
@@ -60,7 +60,7 @@ const articlesParser: Parser = window => {
 };
 
 const meetingsParser: Parser = window => {
-  const values = ['lync', 'teams', 'skype'];
+  const values = ['lync', 'teams', 'skype', 'discord'];
   const windowName = normalizeText(window.name);
   const isMeetings = values.reduce(
     (acc, val) => windowName.includes(val) || acc,

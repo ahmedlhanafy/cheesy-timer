@@ -1,11 +1,10 @@
 import { EventEmitter } from 'events';
 import { Observable, of } from 'rxjs';
-import { parser } from './parser';
-import { Window } from '../utils';
+import { parser } from './utils';
+import { Window } from '../../utils';
 import {
   DatabaseStore,
   Category,
-  FocusType,
   inititalDatabaseStore,
 } from '../../../../src/shared/database';
 
