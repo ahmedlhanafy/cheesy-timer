@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import fullpage from 'fullpage.js';
 import { Main, Stats, Start, Settings } from './pages';
 import { startProgram } from './utils';
 import { TargetContext } from './contexts';
-import { usePersistentTarget } from './hooks';
+import { usePersistentTarget, usePagingEffect } from './hooks';
 import usePersistentTheme from './hooks/usePersistentTheme';
 
 const App = () => {
@@ -13,17 +12,7 @@ const App = () => {
   const [theme, setTheme] = usePersistentTheme();
   const [programStarted, setProgramStarted] = useState(false);
 
-  useEffect(() => {
-    setTimeout(() => {
-      new fullpage(`#${elementId}`, {
-        //options here
-        // autoScrolling: true,
-        licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
-        touchSensitivity: 1
-      });
-      console.log('hey')
-    }, 100)
-  }, [programStarted]);
+  usePagingEffect(programStarted, elementId);
 
   const startApp = () => {
     startProgram();
@@ -54,7 +43,6 @@ const App = () => {
 const Container = styled.div`
   height: 100vh;
   width: 100vw;
-  /* overflow-y: scroll; */
   background-color: ${props => props.theme.backgroundColor};
 `;
 

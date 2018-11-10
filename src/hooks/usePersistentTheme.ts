@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import usePersistentState from './usePersistentState';
 
 export type Theme = {
   backgroundColor: string;
@@ -18,19 +18,6 @@ export const lightTheme: Theme = {
   isDark: true,
 };
 
-const usePersistentTheme = (): [Theme, (val: Theme) => void] => {
-  const localStorageKey = 'theme';
-  const persistedTheme = localStorage.getItem(localStorageKey);
-  const [theme, setTheme] = useState(
-    persistedTheme ? JSON.parse(persistedTheme) : darkTheme,
-  );
-
-  const saveTheme = (val: Theme) => {
-    setTheme(val);
-    localStorage.setItem(localStorageKey, JSON.stringify(val));
-  };
-
-  return [theme, saveTheme];
+export default (): [Theme, (val: Theme) => void] => {
+  return usePersistentState('theme', darkTheme);
 };
-
-export default usePersistentTheme;
