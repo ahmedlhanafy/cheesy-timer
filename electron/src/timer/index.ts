@@ -19,13 +19,15 @@ const interactivity$ = merge(
 const app = interactivity$.pipe(
   bufferTime(PERIOD_TIME),
   flatMap(interactivityArr => {
-    return new Promise(res => {
-      activeWin().then(data =>
-        res({
-          window: mapToWindow(data),
-          active: interactivityArr.length !== 0,
-        }),
-      );
+    return new Promise((res, reject) => {
+      activeWin()
+        .then(data =>
+          res({
+            window: mapToWindow(data),
+            active: interactivityArr.length !== 0,
+          }),
+        )
+        .catch(reject);
     });
   }),
   tap(({ window, active }) => db.save(window, active)),

@@ -1,12 +1,14 @@
 import React, { useContext } from 'react';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
+import color from 'color';
 import CircularProgressbar from 'react-circular-progressbar';
 import { FancyText } from '../components';
 import { useDatabase } from '../hooks';
 import { msToText, msToNumbers } from '../utils';
 import { TargetContext } from '../contexts';
+import { Theme } from '../hooks/usePersistentTheme';
 
-const Main = () => {
+const Main = ({ theme }: { theme: Theme }) => {
   const database = useDatabase();
   const target = useContext(TargetContext);
 
@@ -15,7 +17,7 @@ const Main = () => {
 
   const timeDifference =
     workingHours - (Date.now() - (database.startTime || Date.now()));
-    
+
   const [focusHours, focusMinutes] = msToNumbers(database.all.focus);
   const focusPercentage = (database.all.focus / targetMills) * 100;
 
@@ -25,15 +27,20 @@ const Main = () => {
         <CircularProgressbar
           styles={{
             background: {
-              fill: '#fff',
+              fill: theme.primaryTextColor,
             },
             text: {
-              fill: '#fff',
+              fill: theme.primaryTextColor,
             },
             path: {
               stroke: strokeColor(focusPercentage),
             },
-            trail: { stroke: '#1a1a1a' },
+            trail: {
+              stroke: color(theme.backgroundColor)
+                .darken(0.2)
+                .rgb()
+                .toString(),
+            },
           }}
           percentage={focusPercentage}
           text={`${focusHours}:${
@@ -41,9 +48,9 @@ const Main = () => {
           } ${focusPercentage >= 100 ? '👏🏽' : ''}`}
         />
       </div>
-      <FancyText icon="👨🏽‍💻"> {msToText(database.all.focus)} </FancyText>
-      <FancyText icon="😱"> {msToText(database.all.unfocus)} </FancyText>
-      <FancyText icon="🏡"> {msToText(timeDifference)} </FancyText>
+      <FancyText emoji="👨🏽‍💻"> {msToText(database.all.focus)} </FancyText>
+      <FancyText emoji="😱"> {msToText(database.all.unfocus)} </FancyText>
+      <FancyText emoji="🏡"> {msToText(timeDifference)} </FancyText>
     </CounterContainer>
   );
 };
@@ -64,4 +71,4 @@ const CounterContainer = styled.div`
   overflow: hidden;
 `;
 
-export default Main;
+export default withTheme(Main);

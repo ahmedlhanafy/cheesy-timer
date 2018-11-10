@@ -33,14 +33,14 @@ const Title = styled.h2`
   font-weight: bold;
   font-size: 28px;
   align-self: center;
-  color: white;
+  color: ${props => props.theme.primaryTextColor};
 `;
 
 const WelcomeText = styled.span`
   font-weight: 200;
   font-size: 18px;
   align-self: center;
-  color: white;
+  color: ${props => props.theme.primaryTextColor};
   position: absolute;
   bottom: 30px;
 `;

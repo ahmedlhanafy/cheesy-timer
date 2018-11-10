@@ -1,9 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FancyText } from '../components';
-import { FiYoutube, FiTwitter, FiFacebook } from 'react-icons/fi';
 import { useDatabase } from '../hooks';
 import { msToText } from '../utils';
+import codingIcon from '../icons/flat-icons/coding.svg';
+import codeReviewIcon from '../icons/flat-icons/code_review.svg';
+import meetingsIcon from '../icons/flat-icons/meetings.svg';
+import readingIcon from '../icons/flat-icons/reading.svg';
+import socialIcon from '../icons/flat-icons/social.svg';
+import youtubeIcon from '../icons/flat-icons/youtube.svg';
 
 const Stats = () => {
   const database = useDatabase();
@@ -11,19 +16,26 @@ const Stats = () => {
   return (
     <Container>
       <Title>Stats 📈</Title>
-      <FancyText icon="💻"> {msToText(database.code.focus)} </FancyText>
-      <FancyText icon="👨🏼‍🏫"> {msToText(database.code_review.focus)} </FancyText>
-      <FancyText icon="☎️"> {msToText(database.meetings.focus)} </FancyText>
-      <FancyText icon="✉️"> 2 hours </FancyText>
-      <FancyText icon={<FiYoutube />}>
+      <FancyText icon={codingIcon}> {msToText(database.code.focus)} </FancyText>
+      <FancyText icon={codeReviewIcon}>
         {' '}
-        {msToText(database.youtube.focus)}{' '}
+        {msToText(database.code_review.focus)}{' '}
       </FancyText>
-      <FancyText icon={<FiTwitter />}>
+      <FancyText icon={meetingsIcon}>
+        {' '}
+        {msToText(database.meetings.focus)}{' '}
+      </FancyText>
+      <FancyText icon={readingIcon}>
+        {' '}
+        {msToText(database.articles.focus)}{' '}
+      </FancyText>
+      <FancyText icon={socialIcon}>
         {' '}
         {msToText(database.social.focus)}{' '}
       </FancyText>
-      <FancyText icon={<FiFacebook />}> 2 hours </FancyText>
+      <FancyText icon={youtubeIcon}>
+        {msToText(database.youtube.focus)}{' '}
+      </FancyText>
     </Container>
   );
 };
@@ -33,11 +45,12 @@ const Container = styled.div`
   flex-direction: column;
   padding: 20px 0px 20px 0px;
 `;
+
 const Title = styled.h2`
   font-weight: bold;
   font-size: 28px;
   align-self: center;
-  color: white;
+  color: ${props => props.theme.primaryTextColor};
 `;
 
 export default Stats;

@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Main, Stats, Start } from './pages';
+import styled, { ThemeProvider } from 'styled-components';
+import { Main, Stats, Start, Settings } from './pages';
 import { startProgram } from './utils';
 import { TargetContext } from './contexts';
 import { usePersistentTarget } from './hooks';
+import usePersistentTheme from './hooks/usePersistentTheme';
 
 const App = () => {
   const [target, setTarget] = usePersistentTarget();
+  const [theme, setTheme] = usePersistentTheme();
   const [programStarted, setProgramStarted] = useState(false);
 
   const startApp = () => {
@@ -15,20 +17,23 @@ const App = () => {
   };
 
   return (
-    <TargetContext.Provider value={target}>
-      <Container>
-        <Overlay />
-        <Header />
-        {programStarted ? (
-          <>
-            <Main />
-            <Stats />
-          </>
-        ) : (
-          <Start target={target} setTarget={setTarget} onStart={startApp} />
-        )}
-      </Container>
-    </TargetContext.Provider>
+    <ThemeProvider theme={theme}>
+      <TargetContext.Provider value={target}>
+        <Container>
+          <Overlay />
+          <Header />
+          {programStarted ? (
+            <>
+              <Main />
+              <Stats />
+              <Settings setTheme={setTheme} />
+            </>
+          ) : (
+            <Start target={target} setTarget={setTarget} onStart={startApp} />
+          )}
+        </Container>
+      </TargetContext.Provider>
+    </ThemeProvider>
   );
 };
 
@@ -36,6 +41,7 @@ const Container = styled.div`
   height: 100vh;
   width: 100vw;
   overflow-y: scroll;
+  background-color: ${props => props.theme.backgroundColor}
 `;
 
 const Overlay = styled.div`

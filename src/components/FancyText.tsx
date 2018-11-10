@@ -2,18 +2,28 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 const FancyText = ({
+  emoji,
   icon,
   children,
 }: {
-  icon: string | React.ReactElement<any>;
+  emoji?: string;
+  icon?: string;
   children: string | string[];
 }) => {
   return (
     <MainText>
-      <span style={{ fontSize: 40, marginRight: 6 }}>{icon}</span> 👉🏽 {children}
+      <span style={{ fontSize: 40, marginRight: 6 }}>
+        {emoji || <Icon src={icon} />}
+      </span>{' '}
+      👉🏽 {children}
     </MainText>
   );
 };
+
+const Icon = styled.img`
+  width: 40px;
+  height: 40px;
+`;
 
 const fancyNumbers = {
   '0': '0️⃣',
@@ -31,9 +41,9 @@ const fancyNumbers = {
 const MainText = styled.span`
   font-weight: 500;
   font-size: 22px;
-  color: #fff;
+  color: ${props => props.theme.primaryTextColor};
   padding: 0px 36px;
-  align-self: center;
+  align-self: flex-start;
   display: flex;
   align-items: center;
 `;
