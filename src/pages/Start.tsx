@@ -12,7 +12,6 @@ const Start = ({ onStart, target, setTarget }: Props) => {
   return (
     <Container>
       <Title>Cheesy Timer 🚀</Title>
-      <WelcomeText>Welcome back Ahmed! 🤗</WelcomeText>
       <FancyNumberInput
         value={`${target}`}
         onChange={event => setTarget((event.target as any).value)}
@@ -34,15 +33,6 @@ const Title = styled.h2`
   font-size: 28px;
   align-self: center;
   color: ${props => props.theme.primaryTextColor};
-`;
-
-const WelcomeText = styled.span`
-  font-weight: 200;
-  font-size: 18px;
-  align-self: center;
-  color: ${props => props.theme.primaryTextColor};
-  position: absolute;
-  bottom: 30px;
 `;
 
 export default Start;
