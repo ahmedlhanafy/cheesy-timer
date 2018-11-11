@@ -5,6 +5,7 @@ import { startProgram } from './utils';
 import { TargetContext } from './contexts';
 import { usePersistentTarget, usePagingEffect } from './hooks';
 import usePersistentTheme from './hooks/usePersistentTheme';
+import { WindowsTitleBar } from './components';
 
 const App = () => {
   const elementId = 'main';
@@ -23,6 +24,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <TargetContext.Provider value={target}>
         <Container>
+          <WindowsTitleBar />
           <Overlay />
           <Header />
           {programStarted ? (

@@ -10,6 +10,7 @@ function createWindow() {
     resizable: false,
     fullscreen: false,
     titleBarStyle: 'hiddenInset',
+    frame: false
   });
 
   mainWindow.loadURL('http://localhost:3000/');

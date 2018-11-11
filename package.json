@@ -25,8 +25,8 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "dependencies": {
-    "active-win": "^4.0.0",
     "color": "^3.1.0",
+    "electron-react-titlebar": "^0.8.1",
     "fullpage.js": "^3.0.3",
     "iohook": "^0.2.3",
     "lodash": "^4.17.11",
