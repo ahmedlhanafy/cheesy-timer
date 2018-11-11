@@ -28,7 +28,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <TargetContext.Provider value={target}>
         <Container>
-          {platform !== 'darwin' && <WindowsTitleBar />}
+          <WindowsTitleBar />
           <Overlay />
           <Header />
           {programStarted ? (
