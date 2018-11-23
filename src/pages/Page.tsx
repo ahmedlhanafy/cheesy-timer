@@ -24,7 +24,7 @@ const Title = styled.span`
   font-weight: bold;
   font-size: 28px;
   align-self: center;
-  margin: 28px 0px 8px 0px;
+  margin: 36px 0px 8px 0px;
   color: ${props => props.theme.primaryTextColor};
 `;
 

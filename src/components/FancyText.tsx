@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import arrowIcon from '../icons/emoji/right-arrow.png';
 
 type Props = {
   emoji?: string;
@@ -10,10 +11,8 @@ type Props = {
 const FancyText = ({ emoji, icon, children }: Props) => {
   return (
     <MainText>
-      <span style={{ fontSize: 40, marginRight: 6 }}>
-        {emoji || (icon && <Icon src={icon} />)}
-      </span>{' '}
-      {(emoji || icon) && '👉🏽  '}
+      <span style={{ fontSize: 40, marginRight: 6 }}>{emoji || (icon && <Icon src={icon} />)}</span>{' '}
+      {(emoji || icon) && <Arrow src={arrowIcon} />}
       {children}
     </MainText>
   );
@@ -22,6 +21,12 @@ const FancyText = ({ emoji, icon, children }: Props) => {
 const Icon = styled.img`
   width: 40px;
   height: 40px;
+`;
+
+const Arrow = styled.img`
+  width: 26px;
+  height: 26px;
+  margin-right: 6px;
 `;
 
 const MainText = styled.span`

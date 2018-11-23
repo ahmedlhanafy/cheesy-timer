@@ -6,7 +6,7 @@ import 'react-circular-progressbar/dist/styles.css';
 
 const GlobalStyles = createGlobalStyle`
   * {
-    font-family: 'Pacifico', cursive;
+    font-family: 'Pacifico',"Segoe UI", cursive;
     user-select: none;
   }
   body {

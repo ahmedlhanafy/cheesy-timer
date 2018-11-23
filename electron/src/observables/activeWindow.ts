@@ -1,9 +1,9 @@
-import * as activeWin from 'active-win';
+// import * as activeWin from 'active-win';
 import { Observable } from 'rxjs';
 import { mapToWindow, Window } from '../utils';
 
 export const activeWindow$ = Observable.create(obs => {
-  activeWin()
+  new Promise(res => res({ title: 'code', owner: { bundleId: '', name: '' } }))
     .then(window => {
       if (window) {
         obs.next(mapToWindow(window));
