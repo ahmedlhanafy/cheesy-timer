@@ -48,7 +48,7 @@ describe('UncommittedTimeHanlder', () => {
   });
 
   it(`should'nt display prompt if the user becomes active after less than 10 minutes`, async () => {
-    const uncommittedTime = 9 * 60 * 1000;
+    const uncommittedTime = 4 * 60 * 1000;
 
     promptDialog = jest.fn().mockReturnValue(of(0));
     func = uncommittedTimeHandler(database, promptDialog);
@@ -61,6 +61,7 @@ describe('UncommittedTimeHanlder', () => {
       window: { title: 'Youtube', name: '', bundleId: '' },
       active: true,
     }).toPromise();
+
     expect(promptDialog).not.toBeCalled();
     expect(database.flushUncommittedTime).toBeCalled();
     expect(database.saveUncommittedTime).not.toBeCalled();

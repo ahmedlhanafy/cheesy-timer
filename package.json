@@ -9,9 +9,9 @@
     "electron:test": "jest -c ./electron/jest.config.js",
     "electron:start": "npm run electron:build && electron ./electron/dist/electron/src/main.js",
     "start": "rm tsconfig.json && react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "rm tsconfig.json && react-scripts build",
+    "test": "rm tsconfig.json && react-scripts test",
+    "eject": "rm tsconfig.json && react-scripts eject"
   },
   "repository": "https://github.com/electron/electron-quick-start-typescript",
   "keywords": [

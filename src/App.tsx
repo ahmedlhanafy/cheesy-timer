@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { Main, Stats, Start, Settings } from './pages';
 import { startProgram } from './utils';
 import { TargetContext } from './contexts';
-import { usePersistentTarget, usePagingEffect } from './hooks';
+import { usePersistentTarget, usePagingEffect, usePlatform } from './hooks';
 import usePersistentTheme from './hooks/usePersistentTheme';
 import { WindowsTitleBar } from './components';
 
@@ -12,8 +12,12 @@ const App = () => {
   const [target, setTarget] = usePersistentTarget();
   const [theme, setTheme] = usePersistentTheme();
   const [programStarted, setProgramStarted] = useState(false);
-
+  const platform = usePlatform();
   usePagingEffect(programStarted, elementId);
+
+  if (!platform) {
+    return null;
+  }
 
   const startApp = () => {
     startProgram();
@@ -24,7 +28,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <TargetContext.Provider value={target}>
         <Container>
-          <WindowsTitleBar />
+          {platform !== 'darwin' && <WindowsTitleBar />}
           <Overlay />
           <Header />
           {programStarted ? (
