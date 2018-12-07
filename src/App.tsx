@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { Main, Stats, Start, Settings } from './pages';
-import { startProgram } from './utils';
+import { startProgram, rendererInit } from './utils';
 import { TargetContext } from './contexts';
 import { usePersistentTarget, usePagingEffect, usePlatform } from './hooks';
 import usePersistentTheme from './hooks/usePersistentTheme';
@@ -13,6 +13,8 @@ const App = () => {
   const [theme, setTheme] = usePersistentTheme();
   const [programStarted, setProgramStarted] = useState(false);
   const platform = usePlatform();
+  
+  useRendererInitEffect();
   usePagingEffect(programStarted, elementId);
 
   if (!platform) {
@@ -44,6 +46,12 @@ const App = () => {
       </TargetContext.Provider>
     </ThemeProvider>
   );
+};
+
+const useRendererInitEffect = () => {
+  useEffect(() => {
+    rendererInit();
+  }, []);
 };
 
 const Container = styled.div`

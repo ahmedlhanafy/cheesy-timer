@@ -15,7 +15,7 @@ export const darkTheme: Theme = {
 export const lightTheme: Theme = {
   backgroundColor: '#ffffff',
   primaryTextColor: 'rgba(23,23,23,0.9)',
-  isDark: true,
+  isDark: false,
 };
 
 export default (): [Theme, (val: Theme) => void] => {
