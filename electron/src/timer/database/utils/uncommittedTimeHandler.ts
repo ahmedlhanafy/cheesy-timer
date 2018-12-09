@@ -24,7 +24,7 @@ export const uncommittedTimeHandler = (
 
   return database.read().pipe(
     switchMap(dbStore => {
-      // If the uncommitted time is greater than 10 minutes
+      // If the uncommitted time is greater than 5 minutes
       if (dbStore.uncommittedTime > 5 * 60 * 1000) {
         return promptDialog(
           `Do you want to add ${msToText(

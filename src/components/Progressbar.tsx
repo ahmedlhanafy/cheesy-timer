@@ -12,7 +12,7 @@ type Props = {
   database: DatabaseStore;
 };
 
-const Progressbar = ({ theme, database }: Props) => {
+export const Progressbar = withTheme(({ theme, database }: Props) => {
   const target = useContext(TargetContext);
 
   const targetMills = target * 60 * 60 * 1000;
@@ -45,7 +45,7 @@ const Progressbar = ({ theme, database }: Props) => {
       />
     </Container>
   );
-};
+});
 
 const Container = styled.div`
   width: 250px;
@@ -57,7 +57,5 @@ const strokeColor = (focusPercentage: number): string =>
   focusPercentage >= 100
     ? '#2ac940'
     : focusPercentage < 50
-      ? '#ff3366'
-      : '#f3ca3e';
-
-export default withTheme(Progressbar);
+    ? '#ff3366'
+    : '#f3ca3e';

@@ -1,4 +1,5 @@
-export { default as Main } from './Main';
-export { default as Settings } from './Settings';
-export { default as Start } from './Start';
-export { default as Stats } from './Stats';
+export { Main } from './Main';
+export { Settings } from './Settings';
+export { Start } from './Start';
+export { Stats } from './Stats';
+export { Home } from './Home';

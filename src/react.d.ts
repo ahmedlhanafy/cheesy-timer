@@ -1,18 +1,6 @@
 import * as React from 'react';
 
 declare module 'react' {
-  // React 16.6
-
-  function memo<Props>(
-    component: React.StatelessComponent<Props>,
-  ): React.StatelessComponent<Props>;
-
-  function lazy<P, Component extends React.ComponentType<P>>(
-    importFn: () => Promise<Component | { default: Component }>,
-  ): Component;
-
-  const Suspense: React.ComponentType<{ fallback?: React.ReactNode }>;
-
   // React 16.7
 
   type StateUpdateFunction<State> = (
@@ -38,7 +26,6 @@ declare module 'react' {
 
   function useContext<Context>(context: React.Context<Context>): Context;
 
-  type Reducer<State, Action> = (state: State, action: Action) => State;
   function useReducer<State, Action>(
     reducer: Reducer<State, Action>,
     initialState: State,

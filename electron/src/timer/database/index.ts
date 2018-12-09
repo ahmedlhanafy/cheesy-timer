@@ -7,6 +7,7 @@ import {
   Category,
   inititalDatabaseStore,
 } from '../../../../src/shared/database';
+import { cloneDeep } from 'lodash';
 
 export enum Activity {
   Active = 'active',
@@ -14,7 +15,7 @@ export enum Activity {
 }
 
 class Database extends EventEmitter {
-  private backingStore: DatabaseStore = inititalDatabaseStore;
+  private backingStore: DatabaseStore = cloneDeep(inititalDatabaseStore);
   private static readonly CHANGE = 'change';
 
   constructor(private readonly incrementVal: number = 60000) {
@@ -47,6 +48,10 @@ class Database extends EventEmitter {
 
   public read(): Observable<DatabaseStore> {
     return of(this.backingStore);
+  }
+
+  public reset(): void {
+    this.backingStore = cloneDeep(inititalDatabaseStore);
   }
 
   public save(window: Window, activity: Activity): Observable<void> {

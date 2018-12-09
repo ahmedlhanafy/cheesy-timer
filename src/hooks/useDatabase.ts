@@ -11,10 +11,10 @@ export default (): DatabaseStore => {
     const callback = (_: any, value: DatabaseStore) => {
       setDatabase(value);
     };
-    ipcRenderer.on(Message.DATABASE, callback);
+    ipcRenderer.on(Message.DATABASE_READ, callback);
 
     return () => {
-      ipcRenderer.removeListener(Message.DATABASE, callback);
+      ipcRenderer.removeListener(Message.DATABASE_READ, callback);
     };
   }, []);
 
