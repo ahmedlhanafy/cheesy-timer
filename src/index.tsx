@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import { App } from './App';
 import { createGlobalStyle } from 'styled-components';
 import 'react-circular-progressbar/dist/styles.css';
 
@@ -8,6 +8,7 @@ const GlobalStyles = createGlobalStyle`
   * {
     font-family: 'Pacifico',"Segoe UI", cursive;
     user-select: none;
+    transition: color 0.7s ease-out, background-color 0.7s ease-out;
   }
   body {
     margin: 0px;

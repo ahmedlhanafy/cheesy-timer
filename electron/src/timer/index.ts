@@ -24,18 +24,15 @@ const interactivity$ = merge(
   keyboardKeydownEvents$,
 ).pipe(throttleTime(PERIOD_TIME));
 
-const app = interactivity$.pipe(
-  bufferTime(PERIOD_TIME),
-  flatMap(interactivityArr =>
-    activeWindow$.pipe(
-      map(window => ({ window, active: interactivityArr.length !== 0 })),
+export const start = () =>
+  interactivity$.pipe(
+    bufferTime(PERIOD_TIME),
+    flatMap(interactivityArr =>
+      activeWindow$.pipe(
+        map(window => ({ window, active: interactivityArr.length !== 0 })),
+      ),
     ),
-  ),
-  switchMap(uncommittedTimeHandler(db, promptDialog)),
-);
-
-export const start = () => {
-  app.subscribe();
-};
-
+    switchMap(uncommittedTimeHandler(db, promptDialog)),
+  );
+  
 export const database = db;

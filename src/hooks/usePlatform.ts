@@ -11,7 +11,7 @@ export default (): NodeJS.Platform | void => {
       setPlatform(value);
     };
     ipcRenderer.once(Message.PLATFORM, callback);
-
+    
     return () => {
       ipcRenderer.removeListener(Message.PLATFORM, callback);
     };

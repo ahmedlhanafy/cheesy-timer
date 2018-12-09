@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { FancyButton, FancyNumberInput } from '../components';
+import { FancyLink, FancyNumberInput } from '../components';
 import rocketIcon from '../icons/emoji/rocket.png';
+import { resetTimer } from '../utils';
 
 type Props = {
   target: number;
   setTarget: (target: number) => void;
-  onStart: () => void;
 };
 
-const Start = ({ onStart, target, setTarget }: Props) => {
+export const Start = ({ target, setTarget }: Props) => {
+  useEffect(() => {
+    resetTimer();
+  }, []);
+
   return (
     <Container>
       <Title>
@@ -20,7 +24,7 @@ const Start = ({ onStart, target, setTarget }: Props) => {
         onChange={event => setTarget((event.target as any).value)}
         placeholder="What's your focus target today?"
       />
-      <FancyButton onClick={() => onStart()}> Start </FancyButton>
+      <FancyLink to="/"> Start </FancyLink>
     </Container>
   );
 };
@@ -43,4 +47,3 @@ const Title = styled.h2`
   color: ${props => props.theme.primaryTextColor};
 `;
 
-export default Start;

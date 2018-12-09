@@ -10,10 +10,10 @@ function createWindow() {
     resizable: false,
     fullscreen: false,
     titleBarStyle: 'hiddenInset',
-    frame: false
+    frame: false,
   });
 
-  mainWindow.loadURL('http://localhost:3000/');
+  mainWindow.loadURL('http://localhost:3000/start');
 
   mainWindow.on('closed', () => {
     mainWindow = null;
@@ -25,9 +25,7 @@ function createWindow() {
 app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
-  // if (process.platform !== 'darwin') {
   app.quit();
-  // }
 });
 
 app.on('activate', () => {

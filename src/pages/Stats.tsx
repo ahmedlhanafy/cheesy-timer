@@ -9,8 +9,9 @@ import meetingsIcon from '../icons/flat-icons/meetings.svg';
 import readingIcon from '../icons/flat-icons/reading.svg';
 import socialIcon from '../icons/flat-icons/social.svg';
 import youtubeIcon from '../icons/flat-icons/youtube.svg';
+import { openDetails } from '../utils';
 
-const Stats = () => {
+export const Stats = () => {
   const database = useDatabase();
 
   return (
@@ -38,5 +39,3 @@ const Stats = () => {
     </Page>
   );
 };
-
-export default Stats;

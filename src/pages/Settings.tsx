@@ -1,9 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Theme, darkTheme, lightTheme } from '../hooks/usePersistentTheme';
+import {
+  Theme,
+  darkTheme,
+  lightTheme,
+  blueTheme,
+} from '../hooks/usePersistentTheme';
 import Page from './Page';
+import { FancyLink } from '../components';
 
-const Settings = ({ setTheme }: { setTheme: (theme: Theme) => void }) => {
+export const Settings = ({ setTheme }: { setTheme: (theme: Theme) => void }) => {
   return (
     <Page title="Settings 🛠">
       <SectionHeader>Change Theme</SectionHeader>
@@ -13,10 +19,17 @@ const Settings = ({ setTheme }: { setTheme: (theme: Theme) => void }) => {
           color={darkTheme.backgroundColor}
         />
         <ThemeCircle
+          onClick={() => setTheme(blueTheme)}
+          color={blueTheme.backgroundColor}
+        />
+        <ThemeCircle
           onClick={() => setTheme(lightTheme)}
           color={lightTheme.backgroundColor}
         />
       </ThemeCircleContainer>
+      <FancyLink to="/start" style={{ padding: '4px 50px' }}>
+        Start Over
+      </FancyLink>
       <Space />
       <MadeWithLoveText>Made with ❤️ by Ahmed Elhanafy</MadeWithLoveText>
     </Page>
@@ -59,4 +72,3 @@ const MadeWithLoveText = styled.span`
   text-align: center;
 `;
 
-export default Settings;

@@ -6,12 +6,15 @@ type Props = {
   emoji?: string;
   icon?: string;
   children: string | string[];
+  onClick?: () => void;
 };
 
-const FancyText = ({ emoji, icon, children }: Props) => {
+export const FancyText = ({ emoji, icon, children, onClick }: Props) => {
   return (
-    <MainText>
-      <span style={{ fontSize: 40, marginRight: 6 }}>{emoji || (icon && <Icon src={icon} />)}</span>{' '}
+    <MainText onClick={onClick}>
+      <span style={{ fontSize: 40, marginRight: 6 }}>
+        {emoji || (icon && <Icon src={icon} />)}
+      </span>{' '}
       {(emoji || icon) && <Arrow src={arrowIcon} />}
       {children}
     </MainText>
@@ -38,5 +41,3 @@ const MainText = styled.span`
   align-items: center;
   text-align: center;
 `;
-
-export default FancyText;

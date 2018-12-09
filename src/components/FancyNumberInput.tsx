@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import color from 'color';
 
-const FancyNumberInput = ({
+export const FancyNumberInput = ({
   ...props
 }: React.InputHTMLAttributes<HTMLInputElement>) => {
   return (
@@ -55,4 +55,3 @@ const Input = styled.input`
   }
 `;
 
-export default FancyNumberInput;

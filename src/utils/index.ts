@@ -1,1 +1,1 @@
-export { default as startProgram } from './startProgram';
+export * from './channels';

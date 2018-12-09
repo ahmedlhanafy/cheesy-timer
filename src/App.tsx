@@ -1,48 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
-import { Main, Stats, Start, Settings } from './pages';
-import { startProgram } from './utils';
 import { TargetContext } from './contexts';
-import { usePersistentTarget, usePagingEffect, usePlatform } from './hooks';
-import usePersistentTheme from './hooks/usePersistentTheme';
+import { usePersistentTarget } from './hooks';
 import { WindowsTitleBar } from './components';
+import usePersistentTheme from './hooks/usePersistentTheme';
+import { rendererInit, resetTimer } from './utils';
+import { Home, Start } from './pages';
 
-const App = () => {
-  const elementId = 'main';
+export const App = () => {
   const [target, setTarget] = usePersistentTarget();
   const [theme, setTheme] = usePersistentTheme();
-  const [programStarted, setProgramStarted] = useState(false);
-  const platform = usePlatform();
-  usePagingEffect(programStarted, elementId);
 
-  if (!platform) {
-    return null;
-  }
-
-  const startApp = () => {
-    startProgram();
-    setProgramStarted(true);
-  };
+  useEffect(() => {
+    rendererInit();
+  }, []);
 
   return (
-    <ThemeProvider theme={theme}>
-      <TargetContext.Provider value={target}>
-        <Container>
-          {platform !== 'darwin' && <WindowsTitleBar />}
-          <Overlay />
-          <Header />
-          {programStarted ? (
-            <div id={elementId}>
-              <Main />
-              <Stats />
-              <Settings setTheme={setTheme} />
-            </div>
-          ) : (
-            <Start target={target} setTarget={setTarget} onStart={startApp} />
-          )}
-        </Container>
-      </TargetContext.Provider>
-    </ThemeProvider>
+    <Router>
+      <ThemeProvider theme={theme}>
+        <TargetContext.Provider value={target}>
+          <Container>
+            <WindowsTitleBar />
+            <Route
+              path="/"
+              exact
+              render={() => <Home setTheme={setTheme} />}
+            />
+            <Route
+              path="/start"
+              render={() => <Start target={target} setTarget={setTarget} />}
+            />
+          </Container>
+        </TargetContext.Provider>
+      </ThemeProvider>
+    </Router>
   );
 };
 
@@ -51,23 +43,3 @@ const Container = styled.div`
   width: 100vw;
   background-color: ${props => props.theme.backgroundColor};
 `;
-
-const Overlay = styled.div`
-  z-index: -1;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-`;
-
-const Header = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 44px;
-  -webkit-app-region: drag;
-`;
-
-export default App;
