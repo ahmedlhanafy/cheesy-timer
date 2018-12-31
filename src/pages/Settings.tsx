@@ -27,7 +27,7 @@ export const Settings = ({ setTheme }: { setTheme: (theme: Theme) => void }) => 
           color={lightTheme.backgroundColor}
         />
       </ThemeCircleContainer>
-      <FancyLink to="/start" style={{ padding: '4px 50px' }}>
+      <FancyLink to="/" style={{ padding: '4px 50px' }}>
         Start Over
       </FancyLink>
       <Space />

@@ -19,7 +19,7 @@ export const Home = ({ setTheme }: { setTheme: (theme: Theme) => void }) => {
       render={() => (
         <>
           <Main />
-          <Stats />
+          {/* <Stats /> */}
           <Settings setTheme={setTheme} />
         </>
       )}

@@ -2,6 +2,7 @@
   "name": "electron-quick-start-typescript",
   "version": "1.0.0",
   "description": "A minimal Electron application written with Typescript",
+  "homepage": ".",
   "scripts": {
     "electron:build": "tsc -p ./electron",
     "electron:watch": "tsc -w -p ./electron",
@@ -26,6 +27,7 @@
   "license": "CC0-1.0",
   "dependencies": {
     "@fullpage/react-fullpage": "^0.1.9",
+    "active-win": "^4.0.0",
     "color": "^3.1.0",
     "electron-react-titlebar": "^0.8.1",
     "iohook": "^0.2.3",

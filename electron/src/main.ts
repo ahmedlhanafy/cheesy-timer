@@ -1,4 +1,6 @@
 import { app, BrowserWindow } from 'electron';
+import * as path from 'path';
+import * as url from 'url';
 import { init as initChannels } from './channels';
 
 let mainWindow: Electron.BrowserWindow;
@@ -11,9 +13,19 @@ function createWindow() {
     fullscreen: false,
     titleBarStyle: 'hiddenInset',
     frame: false,
+    webPreferences: {
+      nodeIntegration: false,
+    },
   });
 
-  mainWindow.loadURL('http://localhost:3000/start');
+  mainWindow.loadURL(
+    url.format({
+      pathname: path.join(__dirname, '../../../../build/index.html'),
+      protocol: 'file:',
+      slashes: true,
+    }),
+  );
+  // mainWindow.loadURL('http://localhost:3000/start');
 
   mainWindow.on('closed', () => {
     mainWindow = null;
