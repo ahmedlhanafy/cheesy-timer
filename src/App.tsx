@@ -23,12 +23,12 @@ export const App = () => {
           <Container>
             <WindowsTitleBar />
             <Route
-              path="/"
+              path="/home"
               exact
               render={() => <Home setTheme={setTheme} />}
             />
             <Route
-              path="/start"
+              path="/"
               render={() => <Start target={target} setTarget={setTarget} />}
             />
           </Container>

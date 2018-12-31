@@ -24,7 +24,7 @@ export const Start = ({ target, setTarget }: Props) => {
         onChange={event => setTarget((event.target as any).value)}
         placeholder="What's your focus target today?"
       />
-      <FancyLink to="/"> Start </FancyLink>
+      <FancyLink to="/home"> Start </FancyLink>
     </Container>
   );
 };
