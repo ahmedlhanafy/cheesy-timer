@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Message } from '../shared/channels';
-
-const { ipcRenderer } = (window as any).require('electron');
+import { ipcRenderer } from '../utils';
 
 export default (): NodeJS.Platform | void => {
   const [platform, setPlatform] = useState<NodeJS.Platform | void>(undefined);

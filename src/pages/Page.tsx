@@ -3,16 +3,14 @@ import styled from 'styled-components';
 
 type Props = { children: React.ReactNode; title?: string };
 
-const Page = ({ children, title }: Props) => {
-  return (
-    <div className="section">
-      <Container>
-        {title ? <Title>{title}</Title> : null}
-        <Body>{children}</Body>
-      </Container>
-    </div>
-  );
-};
+const Page = ({ children, title }: Props) => (
+  <div className="section">
+    <Container>
+      {title ? <Title>{title}</Title> : null}
+      <Body>{children}</Body>
+    </Container>
+  </div>
+);
 
 const Container = styled.div`
   display: flex;

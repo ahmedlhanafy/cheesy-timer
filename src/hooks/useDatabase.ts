@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Message } from '../shared/channels';
 import { DatabaseStore, inititalDatabaseStore } from '../shared/database';
-
-const { ipcRenderer } = (window as any).require('electron');
+import { ipcRenderer } from '../utils';
 
 export default (): DatabaseStore => {
   const [database, setDatabase] = useState(inititalDatabaseStore);

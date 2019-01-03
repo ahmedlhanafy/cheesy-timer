@@ -15,6 +15,7 @@ function createWindow() {
     frame: false,
     webPreferences: {
       nodeIntegration: false,
+      preload: path.resolve(__dirname, './preload.js'),
     },
   });
 
@@ -25,7 +26,8 @@ function createWindow() {
       slashes: true,
     }),
   );
-  // mainWindow.loadURL('http://localhost:3000/start');
+
+  // mainWindow.loadURL('http://localhost:3000/');
 
   mainWindow.on('closed', () => {
     mainWindow = null;
