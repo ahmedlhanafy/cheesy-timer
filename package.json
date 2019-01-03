@@ -1,7 +1,7 @@
 {
-  "name": "electron-quick-start-typescript",
-  "version": "1.0.0",
-  "description": "A minimal Electron application written with Typescript",
+  "name": "cheesy-timer",
+  "version": "0.0.1",
+  "description": "",
   "homepage": ".",
   "scripts": {
     "electron:build": "tsc -p ./electron",
@@ -12,7 +12,8 @@
     "start": "rm tsconfig.json && react-scripts start",
     "build": "rm tsconfig.json && react-scripts build",
     "test": "rm tsconfig.json && react-scripts test",
-    "eject": "rm tsconfig.json && react-scripts eject"
+    "eject": "rm tsconfig.json && react-scripts eject",
+    "buildAndStart": "npm run build && npm run electron:start"
   },
   "repository": "https://github.com/electron/electron-quick-start-typescript",
   "keywords": [
@@ -23,7 +24,7 @@
     "demo",
     "typescript"
   ],
-  "author": "GitHub",
+  "author": "Ahmed Elhanafy",
   "license": "CC0-1.0",
   "dependencies": {
     "@fullpage/react-fullpage": "^0.1.9",

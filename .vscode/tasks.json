@@ -12,6 +12,16 @@
             "type": "npm",
             "script": "electron:start",
             "problemMatcher": []
+        },
+        {
+            "type": "npm",
+            "script": "buildAndStart",
+            "problemMatcher": []
+        },
+        {
+            "type": "npm",
+            "script": "build",
+            "problemMatcher": []
         }
     ]
 }

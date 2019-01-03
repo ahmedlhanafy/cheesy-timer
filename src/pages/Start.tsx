@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { FancyLink, FancyNumberInput } from '../components';
-import rocketIcon from '../icons/emoji/rocket.png';
 import { resetTimer } from '../utils';
+import rocketIcon from '../icons/emoji/rocket.png';
 
 type Props = {
   target: number;
@@ -46,4 +46,3 @@ const Title = styled.h2`
   align-self: center;
   color: ${props => props.theme.primaryTextColor};
 `;
-
