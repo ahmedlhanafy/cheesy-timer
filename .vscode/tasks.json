@@ -16,7 +16,10 @@
         {
             "type": "npm",
             "script": "buildAndStart",
-            "problemMatcher": []
+            "problemMatcher": [],
+            "runOptions": {
+                "reevaluateOnRerun": true
+            }
         },
         {
             "type": "npm",
