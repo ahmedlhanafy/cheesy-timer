@@ -17,6 +17,7 @@ import { PERIOD_TIME } from './config';
 import db from './database';
 import { promptDialog } from '../observables/promptDialog';
 import { uncommittedTimeHandler } from './database/utils';
+import * as iohook from 'iohook';
 
 const interactivity$ = merge(
   mouseMovementEvents$,
@@ -24,8 +25,11 @@ const interactivity$ = merge(
   keyboardKeydownEvents$,
 ).pipe(throttleTime(PERIOD_TIME));
 
-export const start = () =>
-  interactivity$.pipe(
+export const start = () => {
+  // Register and start hook
+  iohook.start(false);
+
+  return interactivity$.pipe(
     bufferTime(PERIOD_TIME),
     flatMap(interactivityArr =>
       activeWindow$.pipe(
@@ -34,5 +38,6 @@ export const start = () =>
     ),
     switchMap(uncommittedTimeHandler(db, promptDialog)),
   );
-  
+};
+
 export const database = db;

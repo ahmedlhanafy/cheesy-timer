@@ -1,12 +1,12 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, Menu } from 'electron';
 import * as path from 'path';
-import * as url from 'url';
 import { init as initChannels } from './channels';
 
 let mainWindow: Electron.BrowserWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
+    title: 'Cheesy Timer',
     height: 520,
     width: 370,
     resizable: false,
@@ -19,21 +19,20 @@ function createWindow() {
     },
   });
 
-  mainWindow.loadURL(
-    url.format({
-      pathname: path.join(__dirname, '../../../../build/index.html'),
-      protocol: 'file:',
-      slashes: true,
-    }),
-  );
-
-  // mainWindow.loadURL('http://localhost:3000/');
+  if (process.env.DEV) {
+    mainWindow.loadURL('http://localhost:3000/');
+  } else {
+    mainWindow.loadURL(
+      'file://' + path.resolve(__dirname, '../../../../build/index.html'),
+    );
+  }
 
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
 
   initChannels(mainWindow);
+  Menu.setApplicationMenu(null);
 }
 
 app.on('ready', createWindow);

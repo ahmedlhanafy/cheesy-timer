@@ -5,7 +5,7 @@
     "tasks": [
         {
             "type": "npm",
-            "script": "start",
+            "script": "web:start",
             "problemMatcher": []
         },
         {
@@ -15,11 +15,8 @@
         },
         {
             "type": "npm",
-            "script": "buildAndStart",
-            "problemMatcher": [],
-            "runOptions": {
-                "reevaluateOnRerun": true
-            }
+            "script": "start",
+            "problemMatcher": []
         },
         {
             "type": "npm",

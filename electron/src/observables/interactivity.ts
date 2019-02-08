@@ -35,7 +35,4 @@ export const keyboardKeydownEvents$ = Observable.create(obs => {
   };
 });
 
-// Register and start hook
-ioHook.start(false);
-
 process.on('exit', () => ioHook.unload());
