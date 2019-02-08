@@ -12,7 +12,7 @@ export const promptDialog = (message: string): Observable<Button> =>
       buttons: ['Yup', 'Nope'],
       message,
     });
-    console.log(index)
+
     obs.next(index === 0 ? Button.YUP : Button.NOPE);
     obs.complete();
   });
