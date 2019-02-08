@@ -2,3 +2,4 @@ node_modules
 dist
 electron/dist
 build
+.DS_Store
