@@ -35,4 +35,16 @@ export const keyboardKeydownEvents$ = Observable.create(obs => {
   };
 });
 
+export const mouseWheelEvents$ = Observable.create(obs => {
+  const listener = event => {
+    obs.next(event);
+  }
+
+  ioHook.on('mousewheel', listener);
+
+  return () => {
+    ioHook.removeListener('mousewheel', listener);
+  };
+});
+
 process.on('exit', () => ioHook.unload());

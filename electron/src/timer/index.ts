@@ -12,8 +12,9 @@ import {
   mouseClickEvents$,
   keyboardKeydownEvents$,
   activeWindow$,
+  mouseWheelEvents$,
 } from '../observables';
-import { PERIOD_TIME } from './config';
+import { PERIOD_TIME } from '../../../src/shared/utils/config';
 import db from './database';
 import { promptDialog } from '../observables/promptDialog';
 import { uncommittedTimeHandler } from './database/utils';
@@ -23,6 +24,7 @@ const interactivity$ = merge(
   mouseMovementEvents$,
   mouseClickEvents$,
   keyboardKeydownEvents$,
+  mouseWheelEvents$
 ).pipe(throttleTime(PERIOD_TIME));
 
 export const start = () => {

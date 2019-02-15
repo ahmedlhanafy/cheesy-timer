@@ -1,27 +1,20 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "type": "npm",
-            "script": "web:start",
-            "problemMatcher": []
-        },
-        {
-            "type": "npm",
-            "script": "electron:start",
-            "problemMatcher": []
-        },
-        {
-            "type": "npm",
-            "script": "start",
-            "problemMatcher": []
-        },
-        {
-            "type": "npm",
-            "script": "build",
-            "problemMatcher": []
-        }
-    ]
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "web:start",
+      "label": "web:start",
+      "problemMatcher": []
+    },
+    {
+      "label": "electron:build-dev",
+      "type": "npm",
+      "script": "electron:build-dev",
+      // "dependsOn": "web:start",
+      "problemMatcher": []
+    }
+  ]
 }
