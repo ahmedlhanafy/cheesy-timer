@@ -6,6 +6,7 @@
   "main": "./electron/build/electron/src/main.js",
   "scripts": {
     "electron:build": "DEV=false tsc -p ./electron ",
+    "electron:build-dev": "DEV=true tsc -p ./electron ",
     "electron:dist": "electron-builder -c.extraMetadata.main=electron/build/electron/src/main.js",
     "electron:start": "tsc -p ./electron && DEV=true electron electron/build/electron/src/main.js",
     "electron:test": "jest -c ./electron/jest.config.js",

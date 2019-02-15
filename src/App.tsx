@@ -29,6 +29,7 @@ export const App = () => {
             />
             <Route
               path="/"
+              exact
               render={() => <Start target={target} setTarget={setTarget} />}
             />
           </Container>
