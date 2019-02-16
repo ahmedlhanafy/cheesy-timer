@@ -4,7 +4,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { TargetContext } from './contexts';
 import { usePersistentTarget } from './hooks';
 import { WindowsTitleBar } from './components';
-import usePersistentTheme from './hooks/usePersistentTheme';
+import usePersistentTheme from './shared/hooks/usePersistentTheme';
 import { rendererInit, resetTimer } from './utils';
 import { Home, Start } from './pages';
 

@@ -1,4 +1,4 @@
-import usePersistentState from './usePersistentState';
+import usePersistentState from '../../hooks/usePersistentState';
 
 export type Theme = {
   backgroundColor: string;

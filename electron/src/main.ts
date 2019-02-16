@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu } from 'electron';
+import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
 import { init as initChannels } from './channels';
 

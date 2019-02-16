@@ -5,7 +5,7 @@ import {
   darkTheme,
   lightTheme,
   blueTheme,
-} from '../hooks/usePersistentTheme';
+} from '../shared/hooks/usePersistentTheme';
 import Page from './Page';
 import { FancyLink, ExternalLink } from '../components';
 

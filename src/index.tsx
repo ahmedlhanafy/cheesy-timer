@@ -1,8 +1,8 @@
+import 'react-circular-progressbar/dist/styles.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { App } from './App';
 import { createGlobalStyle } from 'styled-components';
-import 'react-circular-progressbar/dist/styles.css';
+import { App } from './App';
 
 const GlobalStyles = createGlobalStyle`
   * {
@@ -23,3 +23,4 @@ ReactDOM.render(
   </>,
   document.getElementById('root'),
 );
+

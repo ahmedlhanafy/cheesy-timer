@@ -1,1 +1,3 @@
-export { default as TargetContext } from './TargetContext';
+import React from 'react';
+
+export const TargetContext = React.createContext(5);

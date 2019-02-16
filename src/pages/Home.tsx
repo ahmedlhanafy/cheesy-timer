@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import ReactFullpage from '@fullpage/react-fullpage';
 import { startTimer } from '../utils';
-import { Theme } from '../hooks/usePersistentTheme';
+import { Theme } from '../shared/hooks/usePersistentTheme';
 import { Main } from './Main';
 import { Stats } from './Stats';
 import { Settings } from './Settings';

@@ -1,6 +1,6 @@
 import { ipcMain, BrowserWindow } from 'electron';
 import { Message } from '../../src/shared/channels';
-import { database, start } from './timer';
+import { database, start } from './timer/main';
 import { DatabaseStore } from '../../src/shared/database';
 import { Subscription } from 'rxjs';
 
