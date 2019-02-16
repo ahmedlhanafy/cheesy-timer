@@ -11,7 +11,7 @@ type Props = {
 };
 
 export const Start = ({ target, setTarget }: Props) => {
-  const uptodateStatus = useUptodate();
+  const [uptodateStatus, downloadUrl] = useUptodate();
 
   useEffect(() => {
     resetTimer();
@@ -30,7 +30,14 @@ export const Start = ({ target, setTarget }: Props) => {
       <FancyLink to="/home"> Start </FancyLink>
       <Space />
       {uptodateStatus === UPDATE_STATUS.NEEDS_UPDATE ? (
-        <ExternalLink href="https://github.com/ahmedlhanafy/cheesy-timer/releases">There is a new update available 👌</ExternalLink>
+        <ExternalLink
+          href={
+            downloadUrl ||
+            'https://github.com/ahmedlhanafy/cheesy-timer/releases'
+          }
+        >
+          There is a new update available 👌
+        </ExternalLink>
       ) : null}
     </Container>
   );
@@ -58,4 +65,3 @@ const Title = styled.h2`
 const Space = styled.div`
   flex: 1;
 `;
-
