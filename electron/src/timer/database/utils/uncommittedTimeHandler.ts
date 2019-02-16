@@ -7,6 +7,7 @@ import {
   Button,
   promptDialog as dialog,
 } from '../../../observables/promptDialog';
+import { PERIOD_TIME } from '../../../../../src/shared/utils/config';
 
 export const uncommittedTimeHandler = (
   database: typeof db,
@@ -25,7 +26,7 @@ export const uncommittedTimeHandler = (
   return database.read().pipe(
     switchMap(dbStore => {
       // If the uncommitted time is greater than 5 minutes
-      if (dbStore.uncommittedTime > 5 * 60 * 1000) {
+      if (dbStore.uncommittedTime > 5 * PERIOD_TIME) {
         return promptDialog(
           `Do you want to add ${msToText(
             dbStore.uncommittedTime,
