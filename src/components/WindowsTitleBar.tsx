@@ -28,6 +28,7 @@ const Icon = withTheme(({ type, theme, hoverColor, onClick }: IconProps) => {
     >
       <Svg>
         <use
+          style={{ transition: 'color 100ms' }}
           color={
             isHovered && type === IconType.CLOSE
               ? 'white'
@@ -64,14 +65,18 @@ export const WindowsTitleBar = () => {
 const Svg = styled.svg`
   height: 14px;
   width: 14px;
+  transition: none;
 `;
 
 const IconContainer = styled.div<{ hoverColor?: string }>`
   height: 100%;
-  width: 34px;
+  width: 46px;
   display: flex;
   justify-content: center;
   align-items: center;
+  -webkit-app-region: no-drag;
+  z-index: 2;
+  transition: background-color 100ms;
   &:hover {
     background-color: ${props =>
       props.hoverColor
@@ -107,4 +112,4 @@ const Container = styled.header<{ dimBackground: boolean }>`
   align-items: center;
   box-sizing: border-box;
   -webkit-app-region: drag;
-`;
+  `;
