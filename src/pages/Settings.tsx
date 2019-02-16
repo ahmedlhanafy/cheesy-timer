@@ -7,7 +7,7 @@ import {
   blueTheme,
 } from '../hooks/usePersistentTheme';
 import Page from './Page';
-import { FancyLink } from '../components';
+import { FancyLink, ExternalLink } from '../components';
 
 export const Settings = ({ setTheme }: { setTheme: (theme: Theme) => void }) => {
   return (
@@ -31,7 +31,7 @@ export const Settings = ({ setTheme }: { setTheme: (theme: Theme) => void }) => 
         Start Over
       </FancyLink>
       <Space />
-      <MadeWithLoveText>Made with ❤️ by Ahmed Elhanafy</MadeWithLoveText>
+      <ExternalLink href="https://github.com/ahmedlhanafy">Made with ❤️ by Ahmed Elhanafy</ExternalLink>
     </Page>
   );
 };
@@ -61,14 +61,5 @@ const ThemeCircle = styled.div`
 
 const Space = styled.div`
   flex: 1;
-`;
-
-const MadeWithLoveText = styled.span`
-  font-weight: 300;
-  font-size: 16px;
-  color: ${props => props.theme.primaryTextColor};
-  margin-bottom: 16px;
-  align-self: center;
-  text-align: center;
 `;
 

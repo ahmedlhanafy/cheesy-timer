@@ -32,7 +32,6 @@ function createWindow() {
   });
 
   initChannels(mainWindow);
-  Menu.setApplicationMenu(null);
 }
 
 app.on('ready', createWindow);

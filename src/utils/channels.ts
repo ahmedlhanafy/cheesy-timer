@@ -1,5 +1,5 @@
 import { Message } from '../shared/channels';
-import { ipcRenderer } from './ipcRenderer';
+import { ipcRenderer } from './electronAPIs';
 
 export const startTimer = () => ipcRenderer.send(Message.START_TIMER, {});
 export const rendererInit = () => ipcRenderer.send(Message.RENDERER_INIT, {});

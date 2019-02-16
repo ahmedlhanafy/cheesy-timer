@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { FancyLink, FancyNumberInput } from '../components';
+import { FancyLink, FancyNumberInput, ExternalLink } from '../components';
 import { resetTimer } from '../utils';
 import rocketIcon from '../icons/emoji/rocket.png';
+import { useUptodate, UPDATE_STATUS } from '../hooks';
 
 type Props = {
   target: number;
@@ -10,6 +11,8 @@ type Props = {
 };
 
 export const Start = ({ target, setTarget }: Props) => {
+  const uptodateStatus = useUptodate();
+
   useEffect(() => {
     resetTimer();
   }, []);
@@ -25,6 +28,10 @@ export const Start = ({ target, setTarget }: Props) => {
         placeholder="What's your focus target today?"
       />
       <FancyLink to="/home"> Start </FancyLink>
+      <Space />
+      {uptodateStatus === UPDATE_STATUS.NEEDS_UPDATE ? (
+        <ExternalLink href="https://github.com/ahmedlhanafy/cheesy-timer/releases">There is a new update available 👌</ExternalLink>
+      ) : null}
     </Container>
   );
 };
@@ -32,7 +39,8 @@ export const Start = ({ target, setTarget }: Props) => {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 20px 0px 20px 0px;
+  padding-top: 20px;
+  flex: 1;
 `;
 
 const Icon = styled.img`
@@ -46,3 +54,8 @@ const Title = styled.h2`
   align-self: center;
   color: ${props => props.theme.primaryTextColor};
 `;
+
+const Space = styled.div`
+  flex: 1;
+`;
+

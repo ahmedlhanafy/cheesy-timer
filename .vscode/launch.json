@@ -5,14 +5,6 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "chrome",
-      "request": "attach",
-      "name": "Run Renderer Process",
-      "port": 9223,
-      "webRoot": "${workspaceFolder}",
-      "timeout": 50000
-    },
-    {
       "name": "Run Main Process",
       "type": "node",
       "request": "launch",
@@ -30,6 +22,14 @@
         "--remote-debugging-port=9223",
         "${workspaceFolder}/electron/build/electron/src/main.js"
       ]
+    },
+    {
+      "type": "chrome",
+      "request": "attach",
+      "name": "Run Renderer Process",
+      "port": 9223,
+      "webRoot": "${workspaceFolder}",
+      "timeout": 50000
     }
   ]
 }

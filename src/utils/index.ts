@@ -1,2 +1,2 @@
 export * from './channels';
-export * from './ipcRenderer';
+export * from './electronAPIs';
