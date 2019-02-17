@@ -34,6 +34,7 @@ const Desc = styled.h2`
 
 const Link = styled.a`
   ${FancyButtonStyles}
+  margin-bottom: 16px;
 `;
 
 export default IndexPage;

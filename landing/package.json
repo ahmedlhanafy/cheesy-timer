@@ -11,7 +11,8 @@
     "develop": "gatsby develop",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
+    "cname": "rm public/CNAME && touch public/CNAME && echo \"cheesytimer.com\nwww.cheesytimer.com\" >> public/CNAME",
+    "deploy": "gatsby build --prefix-paths && npm run cname && gh-pages -d public"
   },
   "dependencies": {
     "babel-plugin-styled-components": "^1.10.0",
