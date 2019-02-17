@@ -75,7 +75,12 @@ const SEO = ({ description, lang, meta, keywords, title }: Props) => (
                 : [],
             )
             .concat(meta)}
-        />
+        >
+          <link
+            href="https://fonts.googleapis.com/css?family=Pacifico"
+            rel="stylesheet"
+          />
+        </Helmet>
       );
     }}
   />
