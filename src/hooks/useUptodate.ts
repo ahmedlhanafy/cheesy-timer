@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import packageJSON from '../../package.json';
-import { Release } from '../types/github-api.js';
+import { Release } from '../shared/types/github-api.js';
 import { sortBy } from 'lodash';
 
 export enum UPDATE_STATUS {

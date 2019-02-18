@@ -27,6 +27,7 @@
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-source-filesystem": "^2.0.20",
     "gatsby-transformer-sharp": "^2.1.13",
+    "lodash.sortby": "^4.7.0",
     "prop-types": "^15.6.2",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
@@ -38,6 +39,7 @@
   ],
   "license": "MIT",
   "devDependencies": {
+    "@types/lodash.sortby": "^4.7.5",
     "@types/react-helmet": "^5.0.8",
     "gh-pages": "^2.0.1",
     "typescript": "^3.3.3"
