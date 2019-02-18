@@ -7,19 +7,18 @@ type Props = {
   icon?: string;
   children: string | string[];
   onClick?: () => void;
+  tooltip: string;
 };
 
-export const FancyText = ({ emoji, icon, children, onClick }: Props) => {
-  return (
-    <MainText onClick={onClick}>
-      <span style={{ fontSize: 40, marginRight: 6 }}>
-        {emoji || (icon && <Icon src={icon} />)}
-      </span>{' '}
-      {(emoji || icon) && <Arrow src={arrowIcon} />}
-      {children}
-    </MainText>
-  );
-};
+export const FancyText = ({ emoji, icon, children, onClick, tooltip }: Props) => (
+  <MainText title={tooltip} onClick={onClick}>
+    <span style={{ fontSize: 40, marginRight: 6 }}>
+      {emoji || (icon && <Icon src={icon} />)}
+    </span>{' '}
+    {(emoji || icon) && <Arrow src={arrowIcon} />}
+    {children}
+  </MainText>
+);
 
 const Icon = styled.img`
   width: 40px;

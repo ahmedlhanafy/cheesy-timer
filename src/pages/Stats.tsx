@@ -16,24 +16,24 @@ export const Stats = () => {
 
   return (
     <Page title="Stats 📈">
-      <FancyText icon={codingIcon}> {msToText(database.code.focus)} </FancyText>
-      <FancyText icon={codeReviewIcon}>
+      <FancyText tooltip="Coding Time" icon={codingIcon}> {msToText(database.code.focus)} </FancyText>
+      <FancyText tooltip="Codee Review Time" icon={codeReviewIcon}>
         {' '}
         {msToText(database.code_review.focus)}{' '}
       </FancyText>
-      <FancyText icon={meetingsIcon}>
+      <FancyText tooltip="Meetings Time" icon={meetingsIcon}>
         {' '}
         {msToText(database.meetings.focus)}{' '}
       </FancyText>
-      <FancyText icon={readingIcon}>
+      <FancyText tooltip="Reading Time" icon={readingIcon}>
         {' '}
         {msToText(database.articles.focus)}{' '}
       </FancyText>
-      <FancyText icon={socialIcon}>
+      <FancyText tooltip="Social Media Time" icon={socialIcon}>
         {' '}
         {msToText(database.social.focus)}{' '}
       </FancyText>
-      <FancyText icon={youtubeIcon}>
+      <FancyText tooltip="Youtube Time" icon={youtubeIcon}>
         {msToText(database.youtube.focus)}{' '}
       </FancyText>
     </Page>
