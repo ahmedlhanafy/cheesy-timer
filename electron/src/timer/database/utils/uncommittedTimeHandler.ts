@@ -28,9 +28,9 @@ export const uncommittedTimeHandler = (
       // If the uncommitted time is greater than 5 minutes
       if (dbStore.uncommittedTime > 5 * PERIOD_TIME) {
         return promptDialog(
-          `Do you want to add ${msToText(
+          `You've been away for ${msToText(
             dbStore.uncommittedTime,
-          )} to your focus time?`,
+          )}. Should I add this to your focus time?`,
         ).pipe(
           switchMap(button => {
             if (button === Button.YUP) {

@@ -28,10 +28,11 @@ class Database extends EventEmitter {
     return () => this.removeListener(Database.CHANGE, cb);
   }
 
-  private saveStartTime() {
+  public saveStartTime() {
     if (this.backingStore.startTime === undefined) {
       this.backingStore.startTime = Date.now();
     }
+    this.emit(Database.CHANGE, this.backingStore);
   }
 
   public saveUncommittedTime() {
@@ -65,8 +66,6 @@ class Database extends EventEmitter {
     );
 
     this.emit(Database.CHANGE, this.backingStore);
-
-    this.saveStartTime();
 
     return of();
   }

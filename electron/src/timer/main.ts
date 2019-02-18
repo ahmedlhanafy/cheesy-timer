@@ -30,6 +30,7 @@ const interactivity$ = merge(
 export const start = () => {
   // Register and start hook
   iohook.start(false);
+  db.saveStartTime();
 
   return interactivity$.pipe(
     bufferTime(PERIOD_TIME),
