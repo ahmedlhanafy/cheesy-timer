@@ -2,8 +2,9 @@ import React, { MouseEvent } from 'react';
 import color from 'color';
 import styled, { withTheme } from 'styled-components';
 import icons from '../icons/icons.svg';
-import { useHover, usePlatform } from '../hooks';
+import { useHover, useChannel } from '../hooks';
 import { minimizeApp, closeApp } from '../utils';
+import { Message } from '../shared/channels';
 
 enum IconType {
   CLOSE = 'close-window',
@@ -46,7 +47,7 @@ const Icon = withTheme(({ type, theme, hoverColor, onClick }: IconProps) => {
 });
 
 export const WindowsTitleBar = () => {
-  const platform = usePlatform();
+  const platform = useChannel<NodeJS.Platform>(Message.PLATFORM, true);
 
   if (!platform) return null;
 

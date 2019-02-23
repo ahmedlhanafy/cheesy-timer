@@ -1,32 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import {
-  Theme,
-  darkTheme,
-  lightTheme,
-  blueTheme,
-} from '../shared/hooks/usePersistentTheme';
+import { Theme, darkTheme, lightTheme, blueTheme } from '../shared/hooks/usePersistentTheme';
 import Page from './Page';
 import { FancyLink, ExternalLink } from '../components';
+import { useChannel } from '../hooks';
+import { Message } from '../shared/channels';
+import { toggleAutoLaunch, getAutoLaunchStatus } from '../utils';
 
 export const Settings = ({ setTheme }: { setTheme: (theme: Theme) => void }) => {
+  const [status, toggleStatus] = useAutoLaunchStatus();
   return (
     <Page title="Settings 🛠">
       <SectionHeader>Change Theme</SectionHeader>
       <ThemeCircleContainer>
-        <ThemeCircle
-          onClick={() => setTheme(darkTheme)}
-          color={darkTheme.backgroundColor}
-        />
-        <ThemeCircle
-          onClick={() => setTheme(blueTheme)}
-          color={blueTheme.backgroundColor}
-        />
-        <ThemeCircle
-          onClick={() => setTheme(lightTheme)}
-          color={lightTheme.backgroundColor}
-        />
+        <ThemeCircle onClick={() => setTheme(darkTheme)} color={darkTheme.backgroundColor} />
+        <ThemeCircle onClick={() => setTheme(blueTheme)} color={blueTheme.backgroundColor} />
+        <ThemeCircle onClick={() => setTheme(lightTheme)} color={lightTheme.backgroundColor} />
       </ThemeCircleContainer>
+      <div>
+        <Text>{status ? 'Enable' : 'Disable'} autostart</Text>
+        <input type="checkbox" checked={status} onChange={toggleStatus} />
+      </div>
       <FancyLink to="/" style={{ padding: '4px 50px' }}>
         Start Over
       </FancyLink>
@@ -36,11 +30,40 @@ export const Settings = ({ setTheme }: { setTheme: (theme: Theme) => void }) => 
   );
 };
 
+const useAutoLaunchStatus = (): [boolean, () => void] => {
+  const autoLaunchStatus = useChannel<boolean>(Message.AUTO_LAUNCH_STATUS, false, null);
+  const [state, setState] = useState(false);
+
+  useEffect(() => {
+    getAutoLaunchStatus();
+  }, []);
+
+  useEffect(() => {
+    setState(autoLaunchStatus);
+  }, [autoLaunchStatus]);
+
+  const toggleState = () => {
+    if (state) {
+      setState(false);
+    } else {
+      setState(true);
+    }
+    toggleAutoLaunch();
+  };
+
+  return [state, toggleState];
+};
+
 const SectionHeader = styled.span`
   font-weight: 300;
   font-size: 24px;
   color: ${props => props.theme.primaryTextColor};
   margin-bottom: 16px;
+`;
+
+const Text = styled(SectionHeader)`
+  font-size: 22px;
+  margin-right: 16px;
 `;
 
 const ThemeCircleContainer = styled.div`
@@ -62,4 +85,3 @@ const ThemeCircle = styled.div`
 const Space = styled.div`
   flex: 1;
 `;
-

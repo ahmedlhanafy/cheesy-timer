@@ -22,6 +22,8 @@
   "license": "MIT",
   "dependencies": {
     "@fullpage/react-fullpage": "^0.1.9",
+    "@types/auto-launch": "^5.0.1",
+    "auto-launch": "^5.0.5",
     "color": "^3.1.0",
     "driver.js": "^0.9.3",
     "iohook": "^0.2.3",
