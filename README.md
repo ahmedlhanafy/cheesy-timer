@@ -15,7 +15,7 @@
 </p>
 
 <p align="center">
-  <b>One-line pitch</b></br>
+  <b>Ready to own your time?</b></br>
   <sub>One-line pitch elaborated<sub>
 </p>
 
@@ -31,7 +31,9 @@
 
 ## Development
 
-* `❯ yarn start`
+* `❯ npm install`
+* `❯ npm run web:start`
+* `❯ npm run electron:start`
 
 ## License
 

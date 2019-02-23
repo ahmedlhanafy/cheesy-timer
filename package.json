@@ -1,7 +1,7 @@
 {
   "name": "cheesy-timer",
-  "version": "0.1.4",
-  "description": "",
+  "version": "1.0.0",
+  "description": "Ready to own your time?",
   "homepage": "./",
   "main": "./electron/build/electron/src/main.js",
   "scripts": {
