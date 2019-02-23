@@ -5,23 +5,38 @@ import Page from './Page';
 import { FancyLink, ExternalLink } from '../components';
 import { useChannel } from '../hooks';
 import { Message } from '../shared/channels';
-import { toggleAutoLaunch, getAutoLaunchStatus } from '../utils';
+import { toggleAutoLaunch, getAutoLaunchStatus, trackEvent } from '../utils';
 
 export const Settings = ({ setTheme }: { setTheme: (theme: Theme) => void }) => {
   const [status, toggleStatus] = useAutoLaunchStatus();
+  const analyticCategory = 'Settings';
+
   return (
     <Page title="Settings 🛠">
       <SectionHeader>Change Theme</SectionHeader>
       <ThemeCircleContainer>
-        <ThemeCircle onClick={() => setTheme(darkTheme)} color={darkTheme.backgroundColor} />
-        <ThemeCircle onClick={() => setTheme(blueTheme)} color={blueTheme.backgroundColor} />
-        <ThemeCircle onClick={() => setTheme(lightTheme)} color={lightTheme.backgroundColor} />
+        <ThemeCircle
+          onClick={trackEvent({ category: analyticCategory, action: 'Set theme to dark' })(() => setTheme(darkTheme))}
+          color={darkTheme.backgroundColor}
+        />
+        <ThemeCircle
+          onClick={trackEvent({ category: analyticCategory, action: 'set theme to blue' })(() => setTheme(blueTheme))}
+          color={blueTheme.backgroundColor}
+        />
+        <ThemeCircle
+          onClick={trackEvent({ category: analyticCategory, action: 'set theme light' })(() => setTheme(lightTheme))}
+          color={lightTheme.backgroundColor}
+        />
       </ThemeCircleContainer>
       <div>
         <Text>{status ? 'Enable' : 'Disable'} autostart</Text>
-        <input type="checkbox" checked={status} onChange={toggleStatus} />
+        <input
+          type="checkbox"
+          checked={status}
+          onChange={trackEvent({ action: 'toggle auto start', category: analyticCategory })(toggleStatus)}
+        />
       </div>
-      <FancyLink to="/" style={{ padding: '4px 50px' }}>
+      <FancyLink onClick={trackEvent({ action: 'Start over', category: analyticCategory })()} to="/" style={{ padding: '4px 50px' }}>
         Start Over
       </FancyLink>
       <Space />

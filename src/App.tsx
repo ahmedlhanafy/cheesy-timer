@@ -5,7 +5,7 @@ import { TargetContext } from './contexts';
 import { usePersistentTarget } from './hooks';
 import { WindowsTitleBar } from './components';
 import usePersistentTheme from './shared/hooks/usePersistentTheme';
-import { rendererInit, resetTimer } from './utils';
+import { rendererInit, init as initAnalytics } from './utils';
 import { Home, Start } from './pages';
 
 export const App = () => {
@@ -14,6 +14,7 @@ export const App = () => {
 
   useEffect(() => {
     rendererInit();
+    initAnalytics(process.env.REACT_APP_ANALYTICS_KEY as string);
   }, []);
 
   return (
@@ -22,16 +23,8 @@ export const App = () => {
         <TargetContext.Provider value={target}>
           <Container>
             <WindowsTitleBar />
-            <Route
-              path="/home"
-              exact
-              render={() => <Home setTheme={setTheme} />}
-            />
-            <Route
-              path="/"
-              exact
-              render={() => <Start target={target} setTarget={setTarget} />}
-            />
+            <Route path="/home" exact render={() => <Home setTheme={setTheme} />} />
+            <Route path="/" exact render={() => <Start target={target} setTarget={setTarget} />} />
           </Container>
         </TargetContext.Provider>
       </ThemeProvider>

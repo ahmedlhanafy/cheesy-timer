@@ -20,7 +20,7 @@ export const Home = ({ setTheme }: { setTheme: (theme: Theme) => void }) => {
         const goToSettings = () => fullpageApi.moveTo(2);
         return (
           <>
-          <Main goToSettings={goToSettings} />
+            <Main goToSettings={goToSettings} />
             {/* <Stats /> */}
             <Settings setTheme={setTheme} />
           </>

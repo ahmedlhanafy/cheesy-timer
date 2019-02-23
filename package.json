@@ -39,6 +39,7 @@
   "devDependencies": {
     "@types/color": "^3.0.0",
     "@types/fullpage.js": "^2.9.0",
+    "@types/google.analytics": "0.0.39",
     "@types/jest": "^23.3.9",
     "@types/lodash.isnumber": "^3.0.4",
     "@types/react": "^16.7.13",

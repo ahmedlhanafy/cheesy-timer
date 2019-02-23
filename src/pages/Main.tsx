@@ -1,5 +1,4 @@
 import * as React from 'react';
-import color from 'color';
 import styled from 'styled-components';
 import { FancyText, Progressbar, AnimatingHandArrow } from '../components';
 import { useDatabase, useTutorialSteps } from '../hooks';
@@ -8,7 +7,6 @@ import Page from './Page';
 import focusIcon from '../icons/emoji/focus.png';
 import unFocusIcon from '../icons/emoji/unfocus.png';
 import timeIcon from '../icons/emoji/time.png';
-import errorIcon from '../icons/twotone-error-24px.svg';
 import usePersistentState from '../hooks/usePersistentState';
 
 type Props = {

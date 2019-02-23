@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { FancyLink, FancyNumberInput, ExternalLink } from '../components';
-import { resetTimer } from '../utils';
+import { resetTimer, trackEvent } from '../utils';
 import rocketIcon from '../icons/emoji/rocket.png';
 import { useUptodate, UPDATE_STATUS } from '../hooks';
 
@@ -12,8 +12,9 @@ type Props = {
 
 export const Start = ({ target, setTarget }: Props) => {
   const [uptodateStatus, downloadUrl] = useUptodate();
+  const analyticCategory = 'Start';
 
-  useEffect(() => {
+  React.useEffect(() => {
     resetTimer();
   }, []);
 
@@ -27,14 +28,14 @@ export const Start = ({ target, setTarget }: Props) => {
         onChange={event => setTarget((event.target as any).value)}
         placeholder="What's your focus target today?"
       />
-      <FancyLink to="/home"> Start </FancyLink>
+      <FancyLink onClick={trackEvent({ action: 'Start timer', category: analyticCategory })()} to="/home">
+        Start
+      </FancyLink>
       <Space />
       {uptodateStatus === UPDATE_STATUS.NEEDS_UPDATE ? (
         <ExternalLink
-          href={
-            downloadUrl ||
-            'https://github.com/ahmedlhanafy/cheesy-timer/releases'
-          }
+          onClick={trackEvent({ action: 'Download latest version', category: analyticCategory })()}
+          href={downloadUrl || 'https://github.com/ahmedlhanafy/cheesy-timer/releases'}
         >
           There is a new update available 👌
         </ExternalLink>
