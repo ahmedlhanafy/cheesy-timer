@@ -36,11 +36,16 @@ export const Main = ({ goToSettings }: Props) => {
         {' '}
         {msToText(database.all.focus)}{' '}
       </FancyText>
-      <FancyText onClick={handleClick} ref={distractionTimeRef as any} tooltip="Distraction Time" icon={unFocusIcon}>
+      <FancyText onClick={handleClick} ref={distractionTimeRef as any} tooltip="Idle Time" icon={unFocusIcon}>
         {' '}
         {msToText(database.all.unFocus)}{' '}
       </FancyText>
-      <FancyText onClick={handleClick} ref={startTimeRef} tooltip={`Elapsed Time | You started at ${prettifyDate(database.startTime || 0)}`} icon={timeIcon}>
+      <FancyText
+        onClick={handleClick}
+        ref={startTimeRef}
+        tooltip={`Session time | You started at ${prettifyDate(database.startTime || 0)}`}
+        icon={timeIcon}
+      >
         {msToText(database.startTime ? Date.now() - database.startTime : 0)}
       </FancyText>
       <AnimatingHandArrow onClick={() => goToSettings()} />
@@ -53,29 +58,30 @@ const useTutorial = () => {
   const focusTimeRef = React.useRef<HTMLDivElement>(null);
   const distractionTimeRef = React.useRef<HTMLDivElement>(null);
   const startTimeRef = React.useRef<HTMLDivElement>(null);
+  const title = 'Tutorial';
 
   const start = useTutorialSteps([
     {
       ref: focusTimeRef,
       popover: {
-        title: 'Tutorial',
-        description: 'This is the total time you spent focusing',
+        title,
+        description: 'Time you spent being active',
         position: 'top',
       },
     },
     {
       ref: distractionTimeRef,
       popover: {
-        title: 'Tutorial',
-        description: 'This is the total time you wasted',
+        title,
+        description: 'Time you spent being idle',
         position: 'top',
       },
     },
     {
       ref: startTimeRef,
       popover: {
-        title: 'Tutorial',
-        description: 'This is the total time you spent',
+        title,
+        description: 'Total session time',
         position: 'top',
       },
     },
