@@ -16,13 +16,16 @@ export const Home = ({ setTheme }: { setTheme: (theme: Theme) => void }) => {
     <ReactFullpage
       licenseKey="OPEN-SOURCE-GPLV3-LICENSE"
       touchSensitivity={1}
-      render={() => (
-        <>
-          <Main />
-          {/* <Stats /> */}
-          <Settings setTheme={setTheme} />
-        </>
-      )}
+      render={({ fullpageApi }: any) => {
+        const goToSettings = () => fullpageApi.moveTo(2);
+        return (
+          <>
+          <Main goToSettings={goToSettings} />
+            {/* <Stats /> */}
+            <Settings setTheme={setTheme} />
+          </>
+        );
+      }}
     />
   );
 };

@@ -2,13 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { shell } from '../utils';
 
-export const ExternalLink = ({
-  children,
-  href,
-}: {
-  children: string;
-  href: string;
-}) => (
+export const ExternalLink = ({ children, href }: { children: string; href: string }) => (
   <Text
     onClick={() => {
       shell.openExternal(href);

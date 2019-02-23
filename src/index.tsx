@@ -1,4 +1,5 @@
 import 'react-circular-progressbar/dist/styles.css';
+import 'driver.js/dist/driver.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createGlobalStyle } from 'styled-components';
@@ -23,4 +24,3 @@ ReactDOM.render(
   </>,
   document.getElementById('root'),
 );
-
