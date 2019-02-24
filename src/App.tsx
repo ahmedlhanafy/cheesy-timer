@@ -5,17 +5,28 @@ import { TargetContext } from './contexts';
 import { usePersistentTarget } from './hooks';
 import { WindowsTitleBar } from './components';
 import usePersistentTheme from './shared/hooks/usePersistentTheme';
-import { rendererInit, init as initAnalytics } from './utils';
+import { rendererInit, init as initAnalytics, trackPage } from './utils';
 import { Home, Start } from './pages';
+
+const useAppInitializations = () => {
+  useEffect(() => {
+    rendererInit();
+    if (process.env.NODE_ENV === 'production') {
+      initAnalytics(process.env.REACT_APP_ANALYTICS_KEY as string);
+    }
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => trackPage('/app'), 60000);
+
+    return () => clearInterval(timer);
+  }, []);
+};
 
 export const App = () => {
   const [target, setTarget] = usePersistentTarget();
   const [theme, setTheme] = usePersistentTheme();
-
-  useEffect(() => {
-    rendererInit();
-    initAnalytics(process.env.REACT_APP_ANALYTICS_KEY as string);
-  }, []);
+  useAppInitializations();
 
   return (
     <Router>

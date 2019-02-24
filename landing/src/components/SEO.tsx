@@ -65,6 +65,10 @@ const SEO = ({ description, lang, meta, keywords, title }: Props) => (
               name: `twitter:description`,
               content: metaDescription,
             },
+            {
+              name: `twitter:image`,
+              content: 'https://cheesytimer.com/static/42c3024e9c91876aef19ca26bcbb889d/daefb/screenshot1.png',
+            },
           ]
             .concat(
               keywords.length > 0

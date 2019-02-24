@@ -7,7 +7,7 @@
   "scripts": {
     "electron:build": "DEV=false tsc -p ./electron ",
     "electron:build-dev": "DEV=true tsc -p ./electron ",
-    "electron:dist": "electron-builder -c.extraMetadata.main=electron/build/electron/src/main.js --publish=never --win --mac --linux",
+    "electron:dist": "electron-builder -c.extraMetadata.main=electron/build/electron/src/main.js --publish=never --mac --win --linux",
     "electron:start": "tsc -p ./electron && DEV=true electron electron/build/electron/src/main.js",
     "electron:test": "jest -c ./electron/jest.config.js",
     "web:build": "rm tsconfig.json && react-scripts build",
@@ -88,10 +88,12 @@
     "productName": "Cheesy Timer",
     "copyright": "Copyright © 2019 ${author}",
     "mac": {
-      "category": "public.app-category.utilities"
+      "category": "public.app-category.utilities",
+      "icon": "./src/icons/icon.icns"
     },
     "win": {
-      "target": "nsis"
+      "target": "nsis",
+      "icon": "./src/icons/icon.ico"
     },
     "linux": {
       "target": [

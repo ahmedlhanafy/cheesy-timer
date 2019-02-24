@@ -29,7 +29,7 @@ export const Settings = ({ setTheme }: { setTheme: (theme: Theme) => void }) => 
         />
       </ThemeCircleContainer>
       <div>
-        <Text>{status ? 'Enable' : 'Disable'} autostart</Text>
+        <Text>{status ? 'Disable' : 'Enable'} autostart</Text>
         <input
           type="checkbox"
           checked={status}

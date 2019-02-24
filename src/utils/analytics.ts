@@ -1,13 +1,15 @@
 import { MouseEvent, ChangeEvent } from 'react';
 
-export const init = (key: string) => ga('create', key, 'auto');
+const track: typeof ga = typeof ga === 'function' ? ga : (() => {}) as any;
 
-export const trackPage = (path: string) => ga('send', 'pageview', path);
+export const init = (key: string) => track('create', key, 'auto');
+
+export const trackPage = (path: string) => track('send', 'pageview', path);
 
 export const trackEvent = ({ category, action }: { category: string; action: string }) => (
   cb?: (event: MouseEvent<HTMLElement> | ChangeEvent<HTMLInputElement>) => void,
 ) => (event: MouseEvent<HTMLElement> | ChangeEvent<HTMLInputElement>) => {
-  ga('send', 'event', { eventCategory: category, eventAction: action });
+  track('send', 'event', { eventCategory: category, eventAction: action });
   if (cb) {
     cb(event);
   }

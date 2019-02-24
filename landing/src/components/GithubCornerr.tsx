@@ -1,8 +1,14 @@
 import React from 'react';
 import './github-corner.css';
+import { trackEvent } from '../../../src/utils/analytics';
 
 const GithubCorner = ({ url }: { url: string }) => (
-  <a href={url} className="github-corner" aria-label="View source on GitHub">
+  <a
+    onClick={trackEvent({ action: 'Go to github page', category: 'Landing' })()}
+    href={url}
+    className="github-corner"
+    aria-label="View source on GitHub"
+  >
     <svg
       width="80"
       height="80"

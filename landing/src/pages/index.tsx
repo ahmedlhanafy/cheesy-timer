@@ -1,8 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { SEO, Layout, Image, Spinner } from '../components';
 import { FancyButtonStyles } from '../components/FancyButton';
 import { useLatestVersionLink } from '../hooks';
+import { trackEvent } from '../../../src/utils/analytics';
 
 const IndexPage = () => {
   const downloadLink = useLatestVersionLink();
@@ -10,10 +11,15 @@ const IndexPage = () => {
     <Layout>
       <SEO title="Home" keywords={[`Track your time with ease`]} />
       <Title>Cheesy Timer 🚀</Title>
-      <Desc>Cheesy timer is really awesome, it lets you track your time.</Desc>
+      <PitchLine>Ready to own your time?</PitchLine>
+      <Desc>
+        Cheesy timer tracks your mouse and keyboard activity to give you meaningful insights about how you spent your day.
+      </Desc>
       <Image />
       {downloadLink ? (
-        <Link href={downloadLink}>Download Now</Link>
+        <Link onClick={trackEvent({ category: 'Landing', action: 'Download App' })()} href={downloadLink}>
+          Download Now
+        </Link>
       ) : (
         <Spinner />
       )}
@@ -21,21 +27,32 @@ const IndexPage = () => {
   );
 };
 
+const SharedTextStyles = css`
+  align-self: center;
+  color: ${props => props.theme.primaryTextColor};
+  text-align: center;
+`;
+
 const Title = styled.h1`
   font-weight: bold;
   font-size: 28px;
-  align-self: center;
   margin: 36px 0px;
-  color: ${props => props.theme.primaryTextColor};
+  ${SharedTextStyles}
 `;
 
-const Desc = styled.h2`
+const PitchLine = styled.h2`
   font-weight: 300;
   font-size: 20px;
-  align-self: center;
-  text-align: center;
   margin: 0px;
-  color: ${props => props.theme.primaryTextColor};
+  margin-bottom: 4px;
+  ${SharedTextStyles}
+`;
+
+const Desc = styled.h3`
+  font-weight: 300;
+  font-size: 18px;
+  margin: 0px;
+  ${SharedTextStyles}
 `;
 
 const Link = styled.a`

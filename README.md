@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/11808903/53184152-d4d0df80-35fc-11e9-8542-a56a230a4bfc.jpg" width="200"/>
+  <img src="https://user-images.githubusercontent.com/7052827/53305820-b97d0300-388e-11e9-8668-39f423e5c560.png" width="120"/>
 </p>
 
 <h1 align="center">Cheesy Timer</h1>
@@ -16,12 +16,12 @@
 
 <p align="center">
   <b>Ready to own your time?</b></br>
-  <sub>One-line pitch elaborated<sub>
+  <sub>Cheesy timer tracks your mouse and keyboard activity to give you meaningful insights about how you spent your day. And hey! All of your data is stored on your machine.<sub>
 </p>
 
 <br />
 
-* **Simple**: is simple to use
+* **Simple**: simple and intuitive user interface
 * **Consistent behavior**: usable across all operating systems
 * **MIT licensed**: free for personal and commercial use
 
