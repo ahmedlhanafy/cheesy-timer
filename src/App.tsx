@@ -11,9 +11,9 @@ import { Home, Start } from './pages';
 const useAppInitializations = () => {
   useEffect(() => {
     rendererInit();
-    if (process.env.NODE_ENV === 'production') {
+    // if (process.env.NODE_ENV === 'production') {
       initAnalytics(process.env.REACT_APP_ANALYTICS_KEY as string);
-    }
+    // }
   }, []);
 
   useEffect(() => {
