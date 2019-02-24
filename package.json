@@ -7,7 +7,7 @@
   "scripts": {
     "electron:build": "DEV=false tsc -p ./electron ",
     "electron:build-dev": "DEV=true tsc -p ./electron ",
-    "electron:dist": "electron-builder -c.extraMetadata.main=electron/build/electron/src/main.js --publish=never --win --mac",
+    "electron:dist": "electron-builder -c.extraMetadata.main=electron/build/electron/src/main.js --publish=never --win --mac --linux",
     "electron:start": "tsc -p ./electron && DEV=true electron electron/build/electron/src/main.js",
     "electron:test": "jest -c ./electron/jest.config.js",
     "web:build": "rm tsconfig.json && react-scripts build",
@@ -18,7 +18,10 @@
     "build": "npm run web:build && npm run electron:build && npm run electron:dist"
   },
   "repository": "https://github.com/ahmedlhanafy/cheesy-timer",
-  "author": "Ahmed Elhanafy",
+  "author": {
+    "name": "Ahmed Elhanafy",
+    "email": "ahmed.elhanafy95@gmail.com"
+  },
   "license": "MIT",
   "dependencies": {
     "@fullpage/react-fullpage": "^0.1.9",
@@ -89,6 +92,13 @@
     },
     "win": {
       "target": "nsis"
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "rpm"
+      ],
+      "category": "Utility"
     },
     "files": [
       "build/**/*",
