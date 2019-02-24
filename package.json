@@ -95,8 +95,7 @@
     },
     "linux": {
       "target": [
-        "deb",
-        "rpm"
+        "deb"
       ],
       "category": "Utility"
     },
