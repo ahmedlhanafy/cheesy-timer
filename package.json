@@ -25,7 +25,6 @@
   "license": "MIT",
   "dependencies": {
     "@fullpage/react-fullpage": "^0.1.9",
-    "@types/auto-launch": "^5.0.1",
     "auto-launch": "^5.0.5",
     "color": "^3.1.0",
     "driver.js": "^0.9.3",
@@ -37,19 +36,22 @@
     "react-icons": "^3.2.2",
     "react-router-dom": "^4.3.1",
     "rxjs": "^6.3.3",
-    "styled-components": "^4.0.3"
+    "styled-components": "^4.0.3",
+    "universal-analytics": "^0.4.20"
   },
   "devDependencies": {
+    "@types/auto-launch": "^5.0.1",
     "@types/color": "^3.0.0",
     "@types/fullpage.js": "^2.9.0",
     "@types/google.analytics": "0.0.39",
     "@types/jest": "^23.3.9",
     "@types/lodash.isnumber": "^3.0.4",
-    "@types/react": "^16.7.13",
     "@types/react-circular-progressbar": "^1.0.1",
     "@types/react-dom": "^16.0.9",
     "@types/react-router-dom": "^4.3.1",
+    "@types/react": "^16.7.13",
     "@types/styled-components": "^4.0.3",
+    "@types/universal-analytics": "^0.4.2",
     "concurrently": "^4.1.0",
     "electron": "^2.0.2",
     "electron-builder": "^20.38.4",

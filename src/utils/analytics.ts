@@ -1,15 +1,20 @@
+import ua, { Visitor, } from 'universal-analytics';
 import { MouseEvent, ChangeEvent } from 'react';
 
-const track: typeof ga = typeof ga === 'function' ? ga : (() => {}) as any;
+let visitor: Visitor;
 
-export const init = (key: string) => track('create', key, 'auto');
+export const init = (key: string) => {
+  visitor = ua(key);
+};
 
-export const trackPage = (path: string) => track('send', 'pageview', path);
+export const trackPage = (path: string) => {
+  visitor.pageview(path).send();
+};
 
 export const trackEvent = ({ category, action }: { category: string; action: string }) => (
   cb?: (event: MouseEvent<HTMLElement> | ChangeEvent<HTMLInputElement>) => void,
 ) => (event: MouseEvent<HTMLElement> | ChangeEvent<HTMLInputElement>) => {
-  track('send', 'event', { eventCategory: category, eventAction: action });
+  visitor.event({ ec: category, ea: action }).send();
   if (cb) {
     cb(event);
   }
