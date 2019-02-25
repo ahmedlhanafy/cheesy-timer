@@ -1,6 +1,6 @@
 import React from 'react';
 import './github-corner.css';
-import { trackEvent } from '../../../src/utils/analytics';
+import { trackEvent } from '../analytics';
 
 const GithubCorner = ({ url }: { url: string }) => (
   <a

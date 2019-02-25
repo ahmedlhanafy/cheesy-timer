@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { SEO, Layout, Image, Spinner } from '../components';
 import { FancyButtonStyles } from '../components/FancyButton';
 import { useLatestVersionLink } from '../hooks';
-import { trackEvent } from '../../../src/utils/analytics';
+import { trackEvent } from '../analytics';
 
 const IndexPage = () => {
   const downloadLink = useLatestVersionLink();
