@@ -21,7 +21,7 @@ export const Start = ({ target, setTarget }: Props) => {
   return (
     <Container>
       <Title>
-        Cheesy Timer <Icon src={rocketIcon} />
+      {process.env.REACT_APP_ANALYTICS_KEY} <Icon src={rocketIcon} />
       </Title>
       <FancyNumberInput
         value={`${target}`}
