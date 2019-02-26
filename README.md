@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/7052827/53305820-b97d0300-388e-11e9-8668-39f423e5c560.png" width="140"/>
+  <img src="https://user-images.githubusercontent.com/7052827/53375732-b6ecdd00-3964-11e9-8063-081037039857.png" width="140"/>
 </p>
 
 <h1 align="center">Cheesy Timer</h1>

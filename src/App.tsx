@@ -6,7 +6,7 @@ import { usePersistentTarget } from './hooks';
 import { WindowsTitleBar } from './components';
 import usePersistentTheme from './shared/hooks/usePersistentTheme';
 import { rendererInit, init as initAnalytics, trackPage } from './utils';
-import { Home, Start } from './pages';
+import { Home, Start, MacTutorial } from './pages';
 
 const useAppInitializations = () => {
   useEffect(() => {
@@ -34,6 +34,7 @@ export const App = () => {
         <TargetContext.Provider value={target}>
           <Container>
             <WindowsTitleBar />
+            <MacTutorial/>
             <Route path="/home" exact render={() => <Home setTheme={setTheme} />} />
             <Route path="/" exact render={() => <Start target={target} setTarget={setTarget} />} />
           </Container>

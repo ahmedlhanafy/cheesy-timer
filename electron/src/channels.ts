@@ -1,10 +1,11 @@
-import { ipcMain, BrowserWindow } from 'electron';
+import { ipcMain, BrowserWindow, app } from 'electron';
 import { Message } from '../../src/shared/channels';
 import { database, start } from './timer/main';
 import { DatabaseStore } from '../../src/shared/database';
 import { Subscription } from 'rxjs';
 import * as autoLaunch from './autoLaunch';
 import { first, tap } from 'rxjs/operators';
+import * as electronStorage from 'electron-json-storage';
 
 export const init = (window: Electron.BrowserWindow) => {
   let appStartSubscription: Subscription;
@@ -18,10 +19,22 @@ export const init = (window: Electron.BrowserWindow) => {
 
   ipcMain.on(Message.RENDERER_INIT, () => {
     sendPlatform(window);
+    electronStorage.get('version', function(error, { version }: any) {
+      window.webContents.send(Message.GET_VERSION, version);
+    });
+  });
+
+  ipcMain.on(Message.SAVE_VERSION, (_, version: string) => {
+    electronStorage.set('version', { version }, () => {});
   });
 
   ipcMain.on(Message.GET_AUTO_LAUNCH_STATUS, () => {
     sendAutoLaunchStatus(window);
+  });
+
+  ipcMain.on(Message.RESTART_APP, () => {
+    app.relaunch();
+    app.exit(0);
   });
 
   ipcMain.on(Message.OPEN_DETAILS, () => {
@@ -77,7 +90,7 @@ const sendAutoLaunchStatus = (window: Electron.BrowserWindow) =>
   autoLaunch.isEnabled$
     .pipe(
       first(),
-      tap((val) => {
+      tap(val => {
         window.webContents.send(Message.AUTO_LAUNCH_STATUS, val);
       }),
     )

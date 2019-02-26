@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import color from 'color';
 import { LocationDescriptor } from 'history';
 
@@ -11,7 +11,7 @@ type Props = {
 
 export const FancyLink = ({ ...props }: Props) => <StyledLink {...props} />;
 
-const StyledLink = styled(Link)`
+export const FancyLinkStyles = css`
   font-weight: 400;
   font-size: 24px;
   align-self: center;
@@ -32,4 +32,8 @@ const StyledLink = styled(Link)`
   &:hover {
     transform: scale(1.02);
   }
+`;
+
+const StyledLink = styled(Link)`
+  ${FancyLinkStyles}
 `;

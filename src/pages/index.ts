@@ -3,3 +3,4 @@ export { Settings } from './Settings';
 export { Start } from './Start';
 export { Stats } from './Stats';
 export { Home } from './Home';
+export { MacTutorial } from './MacTutorial';

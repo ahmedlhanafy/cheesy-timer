@@ -16,7 +16,7 @@ type Props = {
 export const Main = ({ goToSettings }: Props) => {
   const database = useDatabase();
   const {
-    refs: { distractionTimeRef, focusTimeRef, startTimeRef },
+    refs: { distractionTimeRef, focusTimeRef, startTimeRef, containerRef },
     start,
   } = useTutorial();
 
@@ -30,22 +30,24 @@ export const Main = ({ goToSettings }: Props) => {
       <ProgressbarContainer>
         <Progressbar database={database} />
       </ProgressbarContainer>
-      <FancyText onClick={handleClick} ref={focusTimeRef as any} tooltip="Focus Time" icon={focusIcon}>
-        {' '}
-        {msToText(database.all.focus)}{' '}
-      </FancyText>
-      <FancyText onClick={handleClick} ref={distractionTimeRef as any} tooltip="Idle Time" icon={unFocusIcon}>
-        {' '}
-        {msToText(database.all.unFocus)}{' '}
-      </FancyText>
-      <FancyText
-        onClick={handleClick}
-        ref={startTimeRef}
-        tooltip={`Session time | You started at ${prettifyDate(database.startTime || 0)}`}
-        icon={timeIcon}
-      >
-        {msToText(database.startTime ? Date.now() - database.startTime : 0)}
-      </FancyText>
+      <div ref={containerRef}>
+        <FancyText onClick={handleClick} ref={focusTimeRef as any} tooltip="Focus Time" icon={focusIcon}>
+          {' '}
+          {msToText(database.all.focus)}{' '}
+        </FancyText>
+        <FancyText onClick={handleClick} ref={distractionTimeRef as any} tooltip="Idle Time" icon={unFocusIcon}>
+          {' '}
+          {msToText(database.all.unFocus)}{' '}
+        </FancyText>
+        <FancyText
+          onClick={handleClick}
+          ref={startTimeRef}
+          tooltip={`Session time | You started at ${prettifyDate(database.startTime || 0)}`}
+          icon={timeIcon}
+        >
+          {msToText(database.startTime ? Date.now() - database.startTime : 0)}
+        </FancyText>
+      </div>
       <AnimatingHandArrow onClick={() => goToSettings()} />
     </Page>
   );
@@ -56,6 +58,7 @@ const useTutorial = () => {
   const focusTimeRef = React.useRef<HTMLDivElement>(null);
   const distractionTimeRef = React.useRef<HTMLDivElement>(null);
   const startTimeRef = React.useRef<HTMLDivElement>(null);
+  const containerRef = React.useRef<HTMLDivElement>(null);
   const title = 'Tutorial';
 
   const start = useTutorialSteps([
@@ -83,6 +86,14 @@ const useTutorial = () => {
         position: 'top',
       },
     },
+    {
+      ref: containerRef,
+      popover: {
+        title,
+        description: 'You can restart the tutorial anytime by clicking anywhere on the highlighted container',
+        position: 'top',
+      },
+    },
   ]);
 
   React.useEffect(() => {
@@ -96,7 +107,7 @@ const useTutorial = () => {
     }
   }, [sawTutorial]);
 
-  return { refs: { focusTimeRef, distractionTimeRef, startTimeRef }, start };
+  return { refs: { focusTimeRef, distractionTimeRef, startTimeRef, containerRef }, start };
 };
 
 const prettifyDate = (time: number): string => {

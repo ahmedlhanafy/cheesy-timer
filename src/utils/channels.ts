@@ -9,3 +9,5 @@ export const resetTimer = () => ipcRenderer.send(Message.STOP_TIMER, {});
 export const openDetails = () => ipcRenderer.send(Message.OPEN_DETAILS, {});
 export const toggleAutoLaunch = () => ipcRenderer.send(Message.TOGGLE_AUTOLAUNCH, {});
 export const getAutoLaunchStatus = () => ipcRenderer.send(Message.GET_AUTO_LAUNCH_STATUS, {});
+export const restartApp = () => ipcRenderer.send(Message.RESTART_APP, {});
+export const saveVersion = (version: string) => ipcRenderer.send(Message.SAVE_VERSION, version);
