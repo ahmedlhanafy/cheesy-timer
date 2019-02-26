@@ -16,7 +16,7 @@
 
 <p align="center">
   <b>Ready to own your time?</b></br>
-  <sub>Cheesy timer tracks your mouse and keyboard activity to give you meaningful insights about how you spent your day. And hey! All of your data is stored on your machine.<sub>
+  Cheesy timer tracks your mouse and keyboard activity to give you meaningful insights about how you spent your day. And hey! All of your data is stored on your machine.
 </p>
 
 <br />
