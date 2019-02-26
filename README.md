@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/11808903/53184152-d4d0df80-35fc-11e9-8542-a56a230a4bfc.jpg" width="200"/>
+  <img src="https://user-images.githubusercontent.com/7052827/53375732-b6ecdd00-3964-11e9-8063-081037039857.png" width="140"/>
 </p>
 
 <h1 align="center">Cheesy Timer</h1>
@@ -15,13 +15,13 @@
 </p>
 
 <p align="center">
-  <b>One-line pitch</b></br>
-  <sub>One-line pitch elaborated<sub>
+  <b>Ready to own your time?</b></br>
+  <sub>Cheesy timer tracks your mouse and keyboard activity to give you meaningful insights about how you spent your day. And hey! All of your data is stored on your machine.</sub>
 </p>
 
 <br />
 
-* **Simple**: is simple to use
+* **Simple**: simple and intuitive user interface
 * **Consistent behavior**: usable across all operating systems
 * **MIT licensed**: free for personal and commercial use
 
@@ -31,7 +31,9 @@
 
 ## Development
 
-* `❯ yarn start`
+* `❯ npm install`
+* `❯ npm run web:start`
+* `❯ npm run electron:start`
 
 ## License
 

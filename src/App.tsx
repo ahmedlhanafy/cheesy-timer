@@ -5,16 +5,28 @@ import { TargetContext } from './contexts';
 import { usePersistentTarget } from './hooks';
 import { WindowsTitleBar } from './components';
 import usePersistentTheme from './shared/hooks/usePersistentTheme';
-import { rendererInit, resetTimer } from './utils';
-import { Home, Start } from './pages';
+import { rendererInit, init as initAnalytics, trackPage } from './utils';
+import { Home, Start, MacTutorial } from './pages';
+
+const useAppInitializations = () => {
+  useEffect(() => {
+    rendererInit();
+    if (process.env.NODE_ENV === 'production') {
+      initAnalytics(process.env.REACT_APP_ANALYTICS_KEY as string);
+    }
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => trackPage('/app'), 60000);
+
+    return () => clearInterval(timer);
+  }, []);
+};
 
 export const App = () => {
   const [target, setTarget] = usePersistentTarget();
   const [theme, setTheme] = usePersistentTheme();
-
-  useEffect(() => {
-    rendererInit();
-  }, []);
+  useAppInitializations();
 
   return (
     <Router>
@@ -22,16 +34,9 @@ export const App = () => {
         <TargetContext.Provider value={target}>
           <Container>
             <WindowsTitleBar />
-            <Route
-              path="/home"
-              exact
-              render={() => <Home setTheme={setTheme} />}
-            />
-            <Route
-              path="/"
-              exact
-              render={() => <Start target={target} setTarget={setTarget} />}
-            />
+            <MacTutorial/>
+            <Route path="/home" exact render={() => <Home setTheme={setTheme} />} />
+            <Route path="/" exact render={() => <Start target={target} setTarget={setTarget} />} />
           </Container>
         </TargetContext.Provider>
       </ThemeProvider>

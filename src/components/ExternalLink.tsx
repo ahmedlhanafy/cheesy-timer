@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import styled from 'styled-components';
 import { shell } from '../utils';
 
 export const ExternalLink = ({
   children,
   href,
+  onClick,
 }: {
   children: string;
   href: string;
+  onClick?: (event: MouseEvent<HTMLElement>) => void;
 }) => (
   <Text
-    onClick={() => {
+    onClick={e => {
       shell.openExternal(href);
+      if (onClick) {
+        onClick(e);
+      }
     }}
   >
     {children}

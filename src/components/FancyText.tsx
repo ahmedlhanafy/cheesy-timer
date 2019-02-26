@@ -6,19 +6,17 @@ type Props = {
   emoji?: string;
   icon?: string;
   children: string | string[];
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   tooltip: string;
 };
 
-export const FancyText = ({ emoji, icon, children, onClick, tooltip }: Props) => (
-  <MainText title={tooltip} onClick={onClick}>
-    <span style={{ fontSize: 40, marginRight: 6 }}>
-      {emoji || (icon && <Icon src={icon} />)}
-    </span>{' '}
+export const FancyText = React.forwardRef(({ emoji, icon, children, onClick, tooltip }: Props, ref: any) => (
+  <MainText ref={ref} title={tooltip} onClick={onClick}>
+    <span style={{ fontSize: 40, marginRight: 6 }}>{emoji || (icon && <Icon src={icon} />)}</span>{' '}
     {(emoji || icon) && <Arrow src={arrowIcon} />}
     {children}
   </MainText>
-);
+));
 
 const Icon = styled.img`
   width: 40px;

@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, MouseEvent, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import arrowIcon from '../icons/emoji/down-arrow.png';
-import { useToggleState } from '../hooks';
+import usePersistentState from '../hooks/usePersistentState';
 
 const VerticalAnimationKeyFrames = keyframes`
     0% {
@@ -23,14 +23,19 @@ const AnimatingHandArrowContainer = styled.img`
   animation: ${VerticalAnimationKeyFrames} 800ms ease-in-out infinite;
 `;
 
-export const AnimatingHandArrow = () => {
-  const [displayed, toggleDisplay] = useToggleState(true);
+export const AnimatingHandArrow = ({ onClick }: { onClick: (event: MouseEvent<HTMLImageElement>) => void }) => {
+  const [viewedBefore, setViewedBefore] = usePersistentState('viewed_before', false);
 
   useEffect(() => {
-    const timer = setTimeout(() => toggleDisplay(), 20000);
+    const timer = setTimeout(() => setViewedBefore(true), 20000);
 
     return () => clearTimeout(timer);
   }, []);
 
-  return displayed ? <AnimatingHandArrowContainer src={arrowIcon} /> : null;
+  const handleClick = (event: MouseEvent<HTMLImageElement>) => {
+    setViewedBefore(true);
+    onClick(event);
+  }
+
+  return !viewedBefore ? <AnimatingHandArrowContainer onClick={handleClick} src={arrowIcon} /> : null;
 };

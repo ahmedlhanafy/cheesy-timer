@@ -4,3 +4,4 @@ electron/dist
 build
 .DS_Store
 iohook-crash.log
+.env
