@@ -55,7 +55,7 @@
     "@types/styled-components": "^4.0.3",
     "@types/universal-analytics": "^0.4.2",
     "concurrently": "^4.1.0",
-    "electron": "^2.0.2",
+    "electron": "^7.2.4",
     "electron-builder": "^20.38.4",
     "jest": "^23.6.0",
     "react-scripts": "2.1.1",
